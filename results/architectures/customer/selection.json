@@ -1,0 +1,5 @@
+{
+  "name": "bilstm",
+  "criterion": "MacroF1",
+  "split": "validation"
+}

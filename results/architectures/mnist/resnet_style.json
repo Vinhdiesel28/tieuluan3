@@ -1,0 +1,21 @@
+{
+  "name": "resnet_style",
+  "label": "ResNet-style",
+  "seed": 42,
+  "epochs": 20,
+  "best_epoch": 19,
+  "optimizer": "Adam",
+  "lr": 0.001,
+  "batch": 128,
+  "parameters": 24170,
+  "seconds": 55.20024310005829,
+  "validation": {
+    "Accuracy": 0.9515,
+    "MacroF1": 0.9513352502904933
+  },
+  "test": {
+    "Accuracy": 0.957,
+    "MacroF1": 0.9566689807070924
+  },
+  "numpy_max_error": 5.7220458984375e-06
+}

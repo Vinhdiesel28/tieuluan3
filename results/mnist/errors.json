@@ -1,0 +1,50 @@
+[
+  {
+    "index": 12150,
+    "actual": 8,
+    "prediction": 0,
+    "score": 0.7883190512657166
+  },
+  {
+    "index": 12154,
+    "actual": 0,
+    "prediction": 5,
+    "score": 0.8620145916938782
+  },
+  {
+    "index": 12165,
+    "actual": 9,
+    "prediction": 1,
+    "score": 0.47262755036354065
+  },
+  {
+    "index": 12170,
+    "actual": 9,
+    "prediction": 5,
+    "score": 0.33589231967926025
+  },
+  {
+    "index": 12173,
+    "actual": 4,
+    "prediction": 9,
+    "score": 0.36015987396240234
+  },
+  {
+    "index": 12178,
+    "actual": 3,
+    "prediction": 8,
+    "score": 0.8628959059715271
+  },
+  {
+    "index": 12183,
+    "actual": 3,
+    "prediction": 5,
+    "score": 0.477756530046463
+  },
+  {
+    "index": 12187,
+    "actual": 7,
+    "prediction": 8,
+    "score": 0.4974251687526703
+  }
+]

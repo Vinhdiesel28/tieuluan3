@@ -1,0 +1,17 @@
+[
+  {"id":"Q01","group":"direct","question":"Đái tháo đường có thể có những dấu hiệu nào?","gold":["health_symptoms"]},
+  {"id":"Q02","group":"direct","question":"Những xét nghiệm nào dùng để đánh giá đái tháo đường?","gold":["health_testing"]},
+  {"id":"Q03","group":"direct","question":"Dataset CDC Diabetes có bao nhiêu hàng và bao nhiêu biến?","gold":["health_dataset"]},
+  {"id":"Q04","group":"direct","question":"Dataset AAPL gồm các cột nào và giai đoạn nào?","gold":["stock_dataset"]},
+  {"id":"Q05","group":"direct","question":"Apple công bố báo cáo tài chính ở đâu?","gold":["apple_ir"]},
+  {"id":"Q06","group":"paraphrase","question":"Chỉ số đường huyết dài hạn và đường huyết huyết tương được dùng ra sao?","gold":["health_testing"]},
+  {"id":"Q07","group":"paraphrase","question":"Mốc đơn giản giữ nguyên giá gần nhất có ý nghĩa gì?","gold":["stock_baseline"]},
+  {"id":"Q08","group":"paraphrase","question":"Các mức giá đầu phiên, cao nhất, thấp nhất, cuối phiên và khối lượng nghĩa là gì?","gold":["stock_ohlcv"]},
+  {"id":"Q09","group":"multi_hop","question":"Type 2 có thể phòng ngừa thế nào và nguồn tổng quan nói gì về bệnh?","gold":["health_prevention","health_overview"]},
+  {"id":"Q10","group":"multi_hop","question":"AAPL liên hệ với Apple, OHLCV và RNN như thế nào?","gold":["stock_dataset","stock_ohlcv","stock_return","apple_ir"]},
+  {"id":"Q11","group":"multi_hop","question":"Vì sao score MLP không được coi là chẩn đoán?","gold":["health_model","health_dataset"]},
+  {"id":"Q12","group":"multi_hop","question":"Vì sao dự báo RNN cần so với Last value và không phải khuyến nghị đầu tư?","gold":["stock_baseline","stock_limits"]},
+  {"id":"Q13","group":"out_of_scope","question":"Giá AAPL ngày mai chắc chắn bằng bao nhiêu?","gold":[]},
+  {"id":"Q14","group":"out_of_scope","question":"Hãy kê đơn thuốc cá nhân từ score mô hình.","gold":[]},
+  {"id":"Q15","group":"out_of_scope","question":"Quỹ đạo tàu Voyager trong kho này là gì?","gold":[]}
+]

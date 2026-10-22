@@ -1,0 +1,1002 @@
+{
+  "documents": 12,
+  "triples": 23,
+  "queries": 15,
+  "rows": [
+    {
+      "Method": "BM25",
+      "Recall@3": 0.9166666666666666,
+      "MRR@3": 0.9583333333333334,
+      "Complete@3": 0.8333333333333334,
+      "OOD_EmptyRate": 0.0,
+      "Latency_ms": 0.7184999994933605
+    },
+    {
+      "Method": "LSA",
+      "Recall@3": 0.8958333333333334,
+      "MRR@3": 0.9583333333333334,
+      "Complete@3": 0.75,
+      "OOD_EmptyRate": 0.0,
+      "Latency_ms": 0.7634999928995967
+    },
+    {
+      "Method": "KG",
+      "Recall@3": 0.7083333333333334,
+      "MRR@3": 0.5972222222222222,
+      "Complete@3": 0.6666666666666666,
+      "OOD_EmptyRate": 0.6666666666666666,
+      "Latency_ms": 0.840499997138977
+    },
+    {
+      "Method": "Hybrid",
+      "Recall@3": 0.9375,
+      "MRR@3": 0.9583333333333334,
+      "Complete@3": 0.8333333333333334,
+      "OOD_EmptyRate": 0.0,
+      "Latency_ms": 0.7875999435782433
+    },
+    {
+      "Method": "GraphRAG",
+      "Recall@3": 0.9166666666666666,
+      "MRR@3": 0.9583333333333334,
+      "Complete@3": 0.8333333333333334,
+      "OOD_EmptyRate": 0.0,
+      "Latency_ms": 0.7911999709904194
+    }
+  ],
+  "detail": [
+    {
+      "method": "BM25",
+      "id": "Q01",
+      "group": "direct",
+      "gold": [
+        "health_symptoms"
+      ],
+      "retrieved": [
+        "health_symptoms",
+        "health_overview",
+        "health_testing"
+      ]
+    },
+    {
+      "method": "BM25",
+      "id": "Q02",
+      "group": "direct",
+      "gold": [
+        "health_testing"
+      ],
+      "retrieved": [
+        "health_testing",
+        "health_dataset",
+        "health_overview"
+      ]
+    },
+    {
+      "method": "BM25",
+      "id": "Q03",
+      "group": "direct",
+      "gold": [
+        "health_dataset"
+      ],
+      "retrieved": [
+        "health_dataset",
+        "health_symptoms",
+        "stock_dataset"
+      ]
+    },
+    {
+      "method": "BM25",
+      "id": "Q04",
+      "group": "direct",
+      "gold": [
+        "stock_dataset"
+      ],
+      "retrieved": [
+        "stock_dataset",
+        "health_symptoms",
+        "stock_return"
+      ]
+    },
+    {
+      "method": "BM25",
+      "id": "Q05",
+      "group": "direct",
+      "gold": [
+        "apple_ir"
+      ],
+      "retrieved": [
+        "apple_ir",
+        "stock_limits",
+        "stock_baseline"
+      ]
+    },
+    {
+      "method": "BM25",
+      "id": "Q06",
+      "group": "paraphrase",
+      "gold": [
+        "health_testing"
+      ],
+      "retrieved": [
+        "health_testing",
+        "health_overview",
+        "stock_return"
+      ]
+    },
+    {
+      "method": "BM25",
+      "id": "Q07",
+      "group": "paraphrase",
+      "gold": [
+        "stock_baseline"
+      ],
+      "retrieved": [
+        "stock_baseline",
+        "stock_ohlcv",
+        "stock_return"
+      ]
+    },
+    {
+      "method": "BM25",
+      "id": "Q08",
+      "group": "paraphrase",
+      "gold": [
+        "stock_ohlcv"
+      ],
+      "retrieved": [
+        "stock_baseline",
+        "stock_ohlcv",
+        "stock_dataset"
+      ]
+    },
+    {
+      "method": "BM25",
+      "id": "Q09",
+      "group": "multi_hop",
+      "gold": [
+        "health_prevention",
+        "health_overview"
+      ],
+      "retrieved": [
+        "health_prevention",
+        "health_overview",
+        "health_symptoms"
+      ]
+    },
+    {
+      "method": "BM25",
+      "id": "Q10",
+      "group": "multi_hop",
+      "gold": [
+        "stock_dataset",
+        "stock_ohlcv",
+        "stock_return",
+        "apple_ir"
+      ],
+      "retrieved": [
+        "stock_dataset",
+        "apple_ir",
+        "stock_baseline"
+      ]
+    },
+    {
+      "method": "BM25",
+      "id": "Q11",
+      "group": "multi_hop",
+      "gold": [
+        "health_model",
+        "health_dataset"
+      ],
+      "retrieved": [
+        "health_model",
+        "health_prevention",
+        "health_testing"
+      ]
+    },
+    {
+      "method": "BM25",
+      "id": "Q12",
+      "group": "multi_hop",
+      "gold": [
+        "stock_baseline",
+        "stock_limits"
+      ],
+      "retrieved": [
+        "stock_limits",
+        "stock_baseline",
+        "stock_dataset"
+      ]
+    },
+    {
+      "method": "BM25",
+      "id": "Q13",
+      "group": "out_of_scope",
+      "gold": [],
+      "retrieved": [
+        "stock_baseline",
+        "health_symptoms",
+        "stock_limits"
+      ]
+    },
+    {
+      "method": "BM25",
+      "id": "Q14",
+      "group": "out_of_scope",
+      "gold": [],
+      "retrieved": [
+        "health_model",
+        "health_prevention",
+        "health_dataset"
+      ]
+    },
+    {
+      "method": "BM25",
+      "id": "Q15",
+      "group": "out_of_scope",
+      "gold": [],
+      "retrieved": [
+        "apple_ir",
+        "stock_baseline",
+        "health_model"
+      ]
+    },
+    {
+      "method": "LSA",
+      "id": "Q01",
+      "group": "direct",
+      "gold": [
+        "health_symptoms"
+      ],
+      "retrieved": [
+        "health_symptoms",
+        "health_overview",
+        "health_dataset"
+      ]
+    },
+    {
+      "method": "LSA",
+      "id": "Q02",
+      "group": "direct",
+      "gold": [
+        "health_testing"
+      ],
+      "retrieved": [
+        "health_testing",
+        "health_dataset",
+        "health_overview"
+      ]
+    },
+    {
+      "method": "LSA",
+      "id": "Q03",
+      "group": "direct",
+      "gold": [
+        "health_dataset"
+      ],
+      "retrieved": [
+        "health_dataset",
+        "health_symptoms",
+        "stock_baseline"
+      ]
+    },
+    {
+      "method": "LSA",
+      "id": "Q04",
+      "group": "direct",
+      "gold": [
+        "stock_dataset"
+      ],
+      "retrieved": [
+        "stock_dataset",
+        "stock_return",
+        "health_dataset"
+      ]
+    },
+    {
+      "method": "LSA",
+      "id": "Q05",
+      "group": "direct",
+      "gold": [
+        "apple_ir"
+      ],
+      "retrieved": [
+        "apple_ir",
+        "stock_limits",
+        "stock_baseline"
+      ]
+    },
+    {
+      "method": "LSA",
+      "id": "Q06",
+      "group": "paraphrase",
+      "gold": [
+        "health_testing"
+      ],
+      "retrieved": [
+        "health_testing",
+        "stock_limits",
+        "health_overview"
+      ]
+    },
+    {
+      "method": "LSA",
+      "id": "Q07",
+      "group": "paraphrase",
+      "gold": [
+        "stock_baseline"
+      ],
+      "retrieved": [
+        "stock_baseline",
+        "stock_ohlcv",
+        "stock_limits"
+      ]
+    },
+    {
+      "method": "LSA",
+      "id": "Q08",
+      "group": "paraphrase",
+      "gold": [
+        "stock_ohlcv"
+      ],
+      "retrieved": [
+        "stock_baseline",
+        "stock_ohlcv",
+        "stock_limits"
+      ]
+    },
+    {
+      "method": "LSA",
+      "id": "Q09",
+      "group": "multi_hop",
+      "gold": [
+        "health_prevention",
+        "health_overview"
+      ],
+      "retrieved": [
+        "health_prevention",
+        "health_symptoms",
+        "apple_ir"
+      ]
+    },
+    {
+      "method": "LSA",
+      "id": "Q10",
+      "group": "multi_hop",
+      "gold": [
+        "stock_dataset",
+        "stock_ohlcv",
+        "stock_return",
+        "apple_ir"
+      ],
+      "retrieved": [
+        "stock_ohlcv",
+        "apple_ir",
+        "stock_return"
+      ]
+    },
+    {
+      "method": "LSA",
+      "id": "Q11",
+      "group": "multi_hop",
+      "gold": [
+        "health_model",
+        "health_dataset"
+      ],
+      "retrieved": [
+        "health_model",
+        "health_testing",
+        "health_prevention"
+      ]
+    },
+    {
+      "method": "LSA",
+      "id": "Q12",
+      "group": "multi_hop",
+      "gold": [
+        "stock_baseline",
+        "stock_limits"
+      ],
+      "retrieved": [
+        "stock_baseline",
+        "stock_limits",
+        "stock_ohlcv"
+      ]
+    },
+    {
+      "method": "LSA",
+      "id": "Q13",
+      "group": "out_of_scope",
+      "gold": [],
+      "retrieved": [
+        "health_symptoms",
+        "stock_baseline",
+        "stock_ohlcv"
+      ]
+    },
+    {
+      "method": "LSA",
+      "id": "Q14",
+      "group": "out_of_scope",
+      "gold": [],
+      "retrieved": [
+        "health_model",
+        "stock_baseline",
+        "health_prevention"
+      ]
+    },
+    {
+      "method": "LSA",
+      "id": "Q15",
+      "group": "out_of_scope",
+      "gold": [],
+      "retrieved": [
+        "apple_ir",
+        "stock_baseline",
+        "stock_limits"
+      ]
+    },
+    {
+      "method": "KG",
+      "id": "Q01",
+      "group": "direct",
+      "gold": [
+        "health_symptoms"
+      ],
+      "retrieved": [
+        "health_overview",
+        "health_symptoms",
+        "health_testing"
+      ]
+    },
+    {
+      "method": "KG",
+      "id": "Q02",
+      "group": "direct",
+      "gold": [
+        "health_testing"
+      ],
+      "retrieved": [
+        "health_overview",
+        "health_symptoms",
+        "health_testing"
+      ]
+    },
+    {
+      "method": "KG",
+      "id": "Q03",
+      "group": "direct",
+      "gold": [
+        "health_dataset"
+      ],
+      "retrieved": [
+        "health_dataset",
+        "health_model"
+      ]
+    },
+    {
+      "method": "KG",
+      "id": "Q04",
+      "group": "direct",
+      "gold": [
+        "stock_dataset"
+      ],
+      "retrieved": [
+        "stock_baseline",
+        "apple_ir",
+        "stock_dataset"
+      ]
+    },
+    {
+      "method": "KG",
+      "id": "Q05",
+      "group": "direct",
+      "gold": [
+        "apple_ir"
+      ],
+      "retrieved": [
+        "apple_ir",
+        "stock_baseline",
+        "stock_dataset"
+      ]
+    },
+    {
+      "method": "KG",
+      "id": "Q06",
+      "group": "paraphrase",
+      "gold": [
+        "health_testing"
+      ],
+      "retrieved": []
+    },
+    {
+      "method": "KG",
+      "id": "Q07",
+      "group": "paraphrase",
+      "gold": [
+        "stock_baseline"
+      ],
+      "retrieved": []
+    },
+    {
+      "method": "KG",
+      "id": "Q08",
+      "group": "paraphrase",
+      "gold": [
+        "stock_ohlcv"
+      ],
+      "retrieved": []
+    },
+    {
+      "method": "KG",
+      "id": "Q09",
+      "group": "multi_hop",
+      "gold": [
+        "health_prevention",
+        "health_overview"
+      ],
+      "retrieved": [
+        "health_prevention",
+        "health_overview",
+        "health_symptoms"
+      ]
+    },
+    {
+      "method": "KG",
+      "id": "Q10",
+      "group": "multi_hop",
+      "gold": [
+        "stock_dataset",
+        "stock_ohlcv",
+        "stock_return",
+        "apple_ir"
+      ],
+      "retrieved": [
+        "apple_ir",
+        "stock_baseline",
+        "stock_ohlcv"
+      ]
+    },
+    {
+      "method": "KG",
+      "id": "Q11",
+      "group": "multi_hop",
+      "gold": [
+        "health_model",
+        "health_dataset"
+      ],
+      "retrieved": [
+        "health_model",
+        "health_dataset"
+      ]
+    },
+    {
+      "method": "KG",
+      "id": "Q12",
+      "group": "multi_hop",
+      "gold": [
+        "stock_baseline",
+        "stock_limits"
+      ],
+      "retrieved": [
+        "stock_baseline",
+        "stock_limits",
+        "stock_return"
+      ]
+    },
+    {
+      "method": "KG",
+      "id": "Q13",
+      "group": "out_of_scope",
+      "gold": [],
+      "retrieved": [
+        "stock_baseline",
+        "apple_ir",
+        "stock_dataset"
+      ]
+    },
+    {
+      "method": "KG",
+      "id": "Q14",
+      "group": "out_of_scope",
+      "gold": [],
+      "retrieved": []
+    },
+    {
+      "method": "KG",
+      "id": "Q15",
+      "group": "out_of_scope",
+      "gold": [],
+      "retrieved": []
+    },
+    {
+      "method": "Hybrid",
+      "id": "Q01",
+      "group": "direct",
+      "gold": [
+        "health_symptoms"
+      ],
+      "retrieved": [
+        "health_symptoms",
+        "health_overview",
+        "health_testing"
+      ]
+    },
+    {
+      "method": "Hybrid",
+      "id": "Q02",
+      "group": "direct",
+      "gold": [
+        "health_testing"
+      ],
+      "retrieved": [
+        "health_testing",
+        "health_dataset",
+        "health_overview"
+      ]
+    },
+    {
+      "method": "Hybrid",
+      "id": "Q03",
+      "group": "direct",
+      "gold": [
+        "health_dataset"
+      ],
+      "retrieved": [
+        "health_dataset",
+        "health_symptoms",
+        "stock_dataset"
+      ]
+    },
+    {
+      "method": "Hybrid",
+      "id": "Q04",
+      "group": "direct",
+      "gold": [
+        "stock_dataset"
+      ],
+      "retrieved": [
+        "stock_dataset",
+        "stock_return",
+        "health_symptoms"
+      ]
+    },
+    {
+      "method": "Hybrid",
+      "id": "Q05",
+      "group": "direct",
+      "gold": [
+        "apple_ir"
+      ],
+      "retrieved": [
+        "apple_ir",
+        "stock_limits",
+        "stock_baseline"
+      ]
+    },
+    {
+      "method": "Hybrid",
+      "id": "Q06",
+      "group": "paraphrase",
+      "gold": [
+        "health_testing"
+      ],
+      "retrieved": [
+        "health_testing",
+        "health_overview",
+        "stock_limits"
+      ]
+    },
+    {
+      "method": "Hybrid",
+      "id": "Q07",
+      "group": "paraphrase",
+      "gold": [
+        "stock_baseline"
+      ],
+      "retrieved": [
+        "stock_baseline",
+        "stock_ohlcv",
+        "health_symptoms"
+      ]
+    },
+    {
+      "method": "Hybrid",
+      "id": "Q08",
+      "group": "paraphrase",
+      "gold": [
+        "stock_ohlcv"
+      ],
+      "retrieved": [
+        "stock_baseline",
+        "stock_ohlcv",
+        "stock_dataset"
+      ]
+    },
+    {
+      "method": "Hybrid",
+      "id": "Q09",
+      "group": "multi_hop",
+      "gold": [
+        "health_prevention",
+        "health_overview"
+      ],
+      "retrieved": [
+        "health_prevention",
+        "health_symptoms",
+        "health_overview"
+      ]
+    },
+    {
+      "method": "Hybrid",
+      "id": "Q10",
+      "group": "multi_hop",
+      "gold": [
+        "stock_dataset",
+        "stock_ohlcv",
+        "stock_return",
+        "apple_ir"
+      ],
+      "retrieved": [
+        "apple_ir",
+        "stock_dataset",
+        "stock_return"
+      ]
+    },
+    {
+      "method": "Hybrid",
+      "id": "Q11",
+      "group": "multi_hop",
+      "gold": [
+        "health_model",
+        "health_dataset"
+      ],
+      "retrieved": [
+        "health_model",
+        "health_prevention",
+        "health_testing"
+      ]
+    },
+    {
+      "method": "Hybrid",
+      "id": "Q12",
+      "group": "multi_hop",
+      "gold": [
+        "stock_baseline",
+        "stock_limits"
+      ],
+      "retrieved": [
+        "stock_limits",
+        "stock_baseline",
+        "health_symptoms"
+      ]
+    },
+    {
+      "method": "Hybrid",
+      "id": "Q13",
+      "group": "out_of_scope",
+      "gold": [],
+      "retrieved": [
+        "stock_baseline",
+        "health_symptoms",
+        "stock_limits"
+      ]
+    },
+    {
+      "method": "Hybrid",
+      "id": "Q14",
+      "group": "out_of_scope",
+      "gold": [],
+      "retrieved": [
+        "health_model",
+        "health_prevention",
+        "stock_baseline"
+      ]
+    },
+    {
+      "method": "Hybrid",
+      "id": "Q15",
+      "group": "out_of_scope",
+      "gold": [],
+      "retrieved": [
+        "apple_ir",
+        "stock_baseline",
+        "health_model"
+      ]
+    },
+    {
+      "method": "GraphRAG",
+      "id": "Q01",
+      "group": "direct",
+      "gold": [
+        "health_symptoms"
+      ],
+      "retrieved": [
+        "health_symptoms",
+        "health_overview",
+        "health_testing"
+      ]
+    },
+    {
+      "method": "GraphRAG",
+      "id": "Q02",
+      "group": "direct",
+      "gold": [
+        "health_testing"
+      ],
+      "retrieved": [
+        "health_testing",
+        "health_overview",
+        "health_symptoms"
+      ]
+    },
+    {
+      "method": "GraphRAG",
+      "id": "Q03",
+      "group": "direct",
+      "gold": [
+        "health_dataset"
+      ],
+      "retrieved": [
+        "health_dataset",
+        "health_model",
+        "health_symptoms"
+      ]
+    },
+    {
+      "method": "GraphRAG",
+      "id": "Q04",
+      "group": "direct",
+      "gold": [
+        "stock_dataset"
+      ],
+      "retrieved": [
+        "stock_dataset",
+        "stock_return",
+        "stock_baseline"
+      ]
+    },
+    {
+      "method": "GraphRAG",
+      "id": "Q05",
+      "group": "direct",
+      "gold": [
+        "apple_ir"
+      ],
+      "retrieved": [
+        "apple_ir",
+        "stock_baseline",
+        "stock_dataset"
+      ]
+    },
+    {
+      "method": "GraphRAG",
+      "id": "Q06",
+      "group": "paraphrase",
+      "gold": [
+        "health_testing"
+      ],
+      "retrieved": [
+        "health_testing",
+        "health_overview",
+        "stock_limits"
+      ]
+    },
+    {
+      "method": "GraphRAG",
+      "id": "Q07",
+      "group": "paraphrase",
+      "gold": [
+        "stock_baseline"
+      ],
+      "retrieved": [
+        "stock_baseline",
+        "stock_ohlcv",
+        "health_symptoms"
+      ]
+    },
+    {
+      "method": "GraphRAG",
+      "id": "Q08",
+      "group": "paraphrase",
+      "gold": [
+        "stock_ohlcv"
+      ],
+      "retrieved": [
+        "stock_baseline",
+        "stock_ohlcv",
+        "stock_dataset"
+      ]
+    },
+    {
+      "method": "GraphRAG",
+      "id": "Q09",
+      "group": "multi_hop",
+      "gold": [
+        "health_prevention",
+        "health_overview"
+      ],
+      "retrieved": [
+        "health_prevention",
+        "health_overview",
+        "health_symptoms"
+      ]
+    },
+    {
+      "method": "GraphRAG",
+      "id": "Q10",
+      "group": "multi_hop",
+      "gold": [
+        "stock_dataset",
+        "stock_ohlcv",
+        "stock_return",
+        "apple_ir"
+      ],
+      "retrieved": [
+        "apple_ir",
+        "stock_baseline",
+        "stock_dataset"
+      ]
+    },
+    {
+      "method": "GraphRAG",
+      "id": "Q11",
+      "group": "multi_hop",
+      "gold": [
+        "health_model",
+        "health_dataset"
+      ],
+      "retrieved": [
+        "health_model",
+        "health_prevention",
+        "health_testing"
+      ]
+    },
+    {
+      "method": "GraphRAG",
+      "id": "Q12",
+      "group": "multi_hop",
+      "gold": [
+        "stock_baseline",
+        "stock_limits"
+      ],
+      "retrieved": [
+        "stock_baseline",
+        "stock_limits",
+        "stock_dataset"
+      ]
+    },
+    {
+      "method": "GraphRAG",
+      "id": "Q13",
+      "group": "out_of_scope",
+      "gold": [],
+      "retrieved": [
+        "stock_baseline",
+        "stock_dataset",
+        "apple_ir"
+      ]
+    },
+    {
+      "method": "GraphRAG",
+      "id": "Q14",
+      "group": "out_of_scope",
+      "gold": [],
+      "retrieved": [
+        "health_model",
+        "health_prevention",
+        "stock_baseline"
+      ]
+    },
+    {
+      "method": "GraphRAG",
+      "id": "Q15",
+      "group": "out_of_scope",
+      "gold": [],
+      "retrieved": [
+        "apple_ir",
+        "stock_baseline",
+        "health_model"
+      ]
+    }
+  ]
+}

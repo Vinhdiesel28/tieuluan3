@@ -1,0 +1,21 @@
+{
+  "name": "basic_cnn",
+  "label": "CNN cơ bản",
+  "seed": 42,
+  "epochs": 20,
+  "best_epoch": 20,
+  "optimizer": "Adam",
+  "lr": 0.001,
+  "batch": 128,
+  "parameters": 4010,
+  "seconds": 5.909652800066397,
+  "validation": {
+    "Accuracy": 0.9555,
+    "MacroF1": 0.9551610840750586
+  },
+  "test": {
+    "Accuracy": 0.958,
+    "MacroF1": 0.9577762509112375
+  },
+  "numpy_max_error": 2.86102294921875e-06
+}

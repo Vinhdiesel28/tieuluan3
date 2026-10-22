@@ -1,0 +1,21 @@
+{
+  "name": "mobilenet_style",
+  "label": "MobileNet-style",
+  "seed": 42,
+  "epochs": 20,
+  "best_epoch": 20,
+  "optimizer": "Adam",
+  "lr": 0.001,
+  "batch": 128,
+  "parameters": 4562,
+  "seconds": 28.44969400006812,
+  "validation": {
+    "Accuracy": 0.645,
+    "MacroF1": 0.636690654202426
+  },
+  "test": {
+    "Accuracy": 0.6395,
+    "MacroF1": 0.6273492695356361
+  },
+  "numpy_max_error": 1.9073486328125e-06
+}

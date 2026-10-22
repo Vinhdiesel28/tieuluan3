@@ -1,0 +1,44 @@
+[
+  {
+    "file": "diabetes.csv",
+    "url": "https://raw.githubusercontent.com/tuananhtrieu1305/ISD_Assignment01/main/A05/datasets/diabetes/diabetes_012_health_indicators_BRFSS2015.csv",
+    "bytes": 22738151,
+    "sha256": "a971809d0786d2d7d7f6070f83dfe8af9d860ea33a79e0e2701c8a49f78f9861",
+    "source": "https://raw.githubusercontent.com/tuananhtrieu1305/ISD_Assignment01/main/A05/datasets/diabetes/diabetes_012_health_indicators_BRFSS2015.csv"
+  },
+  {
+    "file": "house_prices.csv",
+    "url": null,
+    "bytes": 3502455,
+    "sha256": "b184ef7884b9fe50077fe1e15674d044e48e2a266f87e27ec44f941b9cd3b161",
+    "source": "https://www.kaggle.com/datasets/nguyentiennhan/vietnam-housing-dataset-2024"
+  },
+  {
+    "file": "mnist_raw.npz",
+    "url": "https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz",
+    "bytes": 11490434,
+    "sha256": "731c5ac602752760c8e48fbffcf8c3b850d9dc2a2aedcf2cc48468fc17b673d1",
+    "source": "https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz"
+  },
+  {
+    "file": "EuroSAT_RGB.zip",
+    "url": "https://zenodo.org/api/records/7711810/files/EuroSAT_RGB.zip/content",
+    "bytes": 94658721,
+    "sha256": "b4f5b234ecb7d7ff9c6cddb046543b4717c53fd6e9815be6c0e80cc614f51b90",
+    "source": "https://zenodo.org/api/records/7711810/files/EuroSAT_RGB.zip/content"
+  },
+  {
+    "file": "AAPL_2015_2025.csv",
+    "url": "https://raw.githubusercontent.com/tuananhtrieu1305/ISD_Assignment01/main/A06/datasets/stock/AAPL_2015_2025.csv",
+    "bytes": 303049,
+    "sha256": "f145be9d08d100739a70d1d3eee3a8883d3437a7e40be331057acf31975f6ffa",
+    "source": "https://raw.githubusercontent.com/tuananhtrieu1305/ISD_Assignment01/main/A06/datasets/stock/AAPL_2015_2025.csv"
+  },
+  {
+    "file": "online_retail_II.xlsx",
+    "url": "https://raw.githubusercontent.com/tuananhtrieu1305/ISD_Assignment01/main/A06/datasets/customer/online_retail_II.xlsx",
+    "bytes": 45622278,
+    "sha256": "bcbe73b35f5b7babf197fb0cb983a11f5d9ff929078d4aa53d171b1f2df2e980",
+    "source": "https://raw.githubusercontent.com/tuananhtrieu1305/ISD_Assignment01/main/A06/datasets/customer/online_retail_II.xlsx"
+  }
+]

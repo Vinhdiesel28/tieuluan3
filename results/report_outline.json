@@ -1,0 +1,302 @@
+[
+  [
+    "TIỂU LUẬN MÔN HỌC",
+    1
+  ],
+  [
+    "MỤC LỤC",
+    2
+  ],
+  [
+    "TÓM TẮT",
+    4
+  ],
+  [
+    "MỞ ĐẦU - 0.1. Bối cảnh và lý do chọn đề tài",
+    5
+  ],
+  [
+    "0.2. Mục tiêu và câu hỏi nghiên cứu",
+    6
+  ],
+  [
+    "0.3. Đối tượng và phạm vi",
+    7
+  ],
+  [
+    "0.4. Phương pháp và tổ chức tiểu luận",
+    8
+  ],
+  [
+    "CHƯƠNG 1. LỊCH SỬ PHÁT TRIỂN AI - 1.1. Nền tảng",
+    9
+  ],
+  [
+    "1.2. Turing và Dartmouth",
+    10
+  ],
+  [
+    "1.3. AI biểu tượng, hệ chuyên gia và giới hạn",
+    11
+  ],
+  [
+    "1.4. Từ đặc trưng thủ công đến học biểu diễn",
+    12
+  ],
+  [
+    "1.5. CNN, RNN và attention trong dòng phát triển",
+    13
+  ],
+  [
+    "1.6. Dataset minh họa: CDC Diabetes",
+    14
+  ],
+  [
+    "1.7. Dataset minh họa: MNIST",
+    15
+  ],
+  [
+    "1.8. Dataset minh họa: AAPL",
+    16
+  ],
+  [
+    "CHƯƠNG 2. ML CƠ BẢN - 2.1. Học có giám sát",
+    17
+  ],
+  [
+    "2.2. Các phương pháp tuyến tính và dựa trên khoảng cách",
+    18
+  ],
+  [
+    "2.3. Cây, ensemble và mạng MLP",
+    19
+  ],
+  [
+    "2.4. Dữ liệu và tiền xử lý: CDC Diabetes",
+    20
+  ],
+  [
+    "2.5. Dữ liệu và tiền xử lý: Giá nhà Việt Nam",
+    21
+  ],
+  [
+    "2.6. Cài đặt MLP scratch và đạo hàm",
+    22
+  ],
+  [
+    "2.7. MLP Keras và PyTorch tương ứng",
+    23
+  ],
+  [
+    "2.8. Kết quả và baseline: CDC Diabetes",
+    24
+  ],
+  [
+    "2.9. Kết quả và baseline: Giá nhà Việt Nam",
+    25
+  ],
+  [
+    "2.10. Learning curve của hai bài ML",
+    26
+  ],
+  [
+    "2.11. Phân bố, ví dụ sai và chi phí",
+    27
+  ],
+  [
+    "2.12. Tiểu kết và giới hạn ML",
+    28
+  ],
+  [
+    "CHƯƠNG 3. CNN - 3.1. Động cơ và cấu trúc ảnh",
+    29
+  ],
+  [
+    "3.2. Convolution, pooling và số tham số",
+    30
+  ],
+  [
+    "3.3. Loss và lan truyền ngược qua CNN",
+    31
+  ],
+  [
+    "3.4. Dataset ảnh: MNIST",
+    32
+  ],
+  [
+    "3.5. Dataset ảnh: EuroSAT",
+    33
+  ],
+  [
+    "3.6. CNN scratch: forward và cập nhật",
+    34
+  ],
+  [
+    "3.7. CNN Keras và PyTorch",
+    35
+  ],
+  [
+    "3.8. Đánh giá CNN trên MNIST",
+    36
+  ],
+  [
+    "3.9. Đánh giá CNN trên EuroSAT",
+    37
+  ],
+  [
+    "3.10. Đường học và chi phí CNN",
+    38
+  ],
+  [
+    "3.11. Phân tích trường hợp sai",
+    39
+  ],
+  [
+    "3.12. So sánh các kiến trúc khác nhau",
+    40
+  ],
+  [
+    "3.13. Kết quả so sánh kiến trúc trên hai dataset",
+    41
+  ],
+  [
+    "3.14. Tiểu kết CNN và hướng mở rộng",
+    42
+  ],
+  [
+    "CHƯƠNG 4. RNN - 4.1. Chuỗi và trạng thái",
+    43
+  ],
+  [
+    "4.2. Vanilla RNN và hợp hàm theo thời gian",
+    44
+  ],
+  [
+    "4.3. BPTT và kiểm soát gradient",
+    45
+  ],
+  [
+    "4.4. LSTM, GRU và phạm vi mô hình",
+    46
+  ],
+  [
+    "4.5. Dataset chuỗi: AAPL",
+    47
+  ],
+  [
+    "4.6. Dataset chuỗi: Online Retail II",
+    48
+  ],
+  [
+    "4.7. RNN Keras và PyTorch",
+    49
+  ],
+  [
+    "4.8. Kết quả RNN: AAPL",
+    50
+  ],
+  [
+    "4.9. Kết quả RNN: Online Retail II",
+    51
+  ],
+  [
+    "4.10. Learning curve và chi phí RNN",
+    52
+  ],
+  [
+    "4.11. Phân tích sai số và dịch chuyển thời gian",
+    53
+  ],
+  [
+    "4.12. So sánh các kiến trúc khác nhau",
+    54
+  ],
+  [
+    "4.13. Kết quả so sánh kiến trúc trên hai dataset",
+    55
+  ],
+  [
+    "4.14. Tiểu kết RNN",
+    56
+  ],
+  [
+    "CHƯƠNG 5. KNOWLEDGE GRAPH VÀ RAG",
+    57
+  ],
+  [
+    "5.1. Cơ sở Knowledge Graph",
+    58
+  ],
+  [
+    "5.2. Truy hồi BM25 và LSA",
+    59
+  ],
+  [
+    "5.3. GraphRAG và hợp hàm",
+    60
+  ],
+  [
+    "5.4. Dataset của Chương 5",
+    61
+  ],
+  [
+    "5.5. Mã nguồn và cách chạy notebook",
+    62
+  ],
+  [
+    "5.6. Kết quả đánh giá truy hồi",
+    63
+  ],
+  [
+    "5.7. Nhận xét, sai số và giới hạn",
+    64
+  ],
+  [
+    "CHƯƠNG 6. HỆ ĐA AGENT",
+    65
+  ],
+  [
+    "6.1. Router và các Agent chuyên trách",
+    66
+  ],
+  [
+    "6.2. Hợp hàm và luồng điều phối",
+    67
+  ],
+  [
+    "6.3. Kết quả kịch bản đa Agent",
+    68
+  ],
+  [
+    "6.4. Tích hợp web và triển khai",
+    69
+  ],
+  [
+    "6.5. Kết luận phần cập nhật",
+    70
+  ],
+  [
+    "PHỤ LỤC A. TRIỂN KHAI - A.1. Kiến trúc ứng dụng",
+    71
+  ],
+  [
+    "A.2. Hợp đồng đầu vào và giới hạn sử dụng",
+    72
+  ],
+  [
+    "A.3. Kiểm chứng và trạng thái deploy",
+    73
+  ],
+  [
+    "KẾT LUẬN",
+    74
+  ],
+  [
+    "TÀI LIỆU THAM KHẢO",
+    75
+  ],
+  [
+    "Tài liệu tham khảo (tiếp) và tái lập",
+    76
+  ]
+]

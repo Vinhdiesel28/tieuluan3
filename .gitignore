@@ -1,0 +1,14 @@
+.venv/
+data/*
+!data/README.md
+!data/diabetes.csv
+!data/AAPL_2015_2025.csv
+tmp/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.log
+report/tieuluan01_CT_08_VinhNM.934.pdf
+report/Tieu_luan_Nguyen_Minh_Vinh.md
+docs/web-preview.png
+results/render_verification.json

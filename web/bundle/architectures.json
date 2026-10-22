@@ -1,0 +1,1138 @@
+{
+  "diabetes": {
+    "LogisticRegression": {
+      "config": {
+        "name": "LogisticRegression",
+        "kind": "linear",
+        "task": "classification"
+      },
+      "file": "diabetes_model_LogisticRegression.npz",
+      "label": "LogisticRegression",
+      "framework": "scikit-learn",
+      "validation": {
+        "Accuracy": 0.716,
+        "MacroF1": 0.6389322565716872,
+        "F1": 0.4721189591078067,
+        "Precision": 0.345343303874915,
+        "Recall": 0.7459618208516887,
+        "AP": 0.425759377676268,
+        "ROC_AUC": 0.8038424255134081
+      },
+      "test": {
+        "Accuracy": 0.7146,
+        "MacroF1": 0.6402545978966566,
+        "F1": 0.4767143381004767,
+        "Precision": 0.34983853606027987,
+        "Recall": 0.7479861910241657,
+        "AP": 0.4362297724366474,
+        "ROC_AUC": 0.7994453233139425
+      }
+    },
+    "RandomForest": {
+      "config": {
+        "name": "RandomForest",
+        "kind": "forest",
+        "task": "classification",
+        "trees": 100
+      },
+      "file": "diabetes_model_RandomForest.npz",
+      "label": "RandomForest",
+      "framework": "scikit-learn",
+      "validation": {
+        "Accuracy": 0.7785,
+        "MacroF1": 0.6611428359437956,
+        "F1": 0.4617253948967193,
+        "Precision": 0.39378238341968913,
+        "Recall": 0.5580029368575624,
+        "AP": 0.4133842789116618,
+        "ROC_AUC": 0.7935930669278779
+      },
+      "test": {
+        "Accuracy": 0.789,
+        "MacroF1": 0.6731210237341403,
+        "F1": 0.4784972812654474,
+        "Precision": 0.4194107452339688,
+        "Recall": 0.5569620253164557,
+        "AP": 0.4496765949124269,
+        "ROC_AUC": 0.8004595749280122
+      }
+    }
+  },
+  "housing": {
+    "Ridge": {
+      "config": {
+        "name": "Ridge",
+        "kind": "linear",
+        "task": "regression"
+      },
+      "file": "housing_model_Ridge.npz",
+      "label": "Ridge",
+      "framework": "scikit-learn",
+      "validation": {
+        "RMSE": 2.0008860056070366,
+        "MAE": 1.6294361352920532,
+        "R2": 0.21298986673355103
+      },
+      "test": {
+        "RMSE": 1.9465117530497325,
+        "MAE": 1.5550274848937988,
+        "R2": 0.22473013401031494
+      }
+    },
+    "RandomForest": {
+      "config": {
+        "name": "RandomForest",
+        "kind": "forest",
+        "task": "regression",
+        "trees": 100
+      },
+      "file": "housing_model_RandomForest.npz",
+      "label": "RandomForest",
+      "framework": "scikit-learn",
+      "validation": {
+        "RMSE": 1.8744661034673376,
+        "MAE": 1.5011260077795805,
+        "R2": 0.30929787087830896
+      },
+      "test": {
+        "RMSE": 1.854184355699776,
+        "MAE": 1.4718575123584756,
+        "R2": 0.2965314522184187
+      }
+    }
+  },
+  "mnist": {
+    "basic_cnn": {
+      "config": {
+        "name": "basic_cnn",
+        "label": "CNN cơ bản",
+        "kind": "cnn",
+        "shape": [
+          16,
+          16,
+          1
+        ],
+        "outputs": 10,
+        "hidden": 32,
+        "spec": [
+          {
+            "op": "conv",
+            "name": "conv",
+            "inputs": 1,
+            "outputs": 8,
+            "kernel": 3,
+            "padding": 0,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "pool"
+          },
+          {
+            "op": "flatten"
+          },
+          {
+            "op": "linear",
+            "name": "head",
+            "inputs": 392,
+            "outputs": 10
+          }
+        ]
+      },
+      "file": "mnist_model_basic_cnn.npz",
+      "label": "CNN cơ bản",
+      "framework": "pytorch",
+      "validation": {
+        "Accuracy": 0.9555,
+        "MacroF1": 0.9551610840750586
+      },
+      "test": {
+        "Accuracy": 0.958,
+        "MacroF1": 0.9577762509112375
+      }
+    },
+    "vgg_style": {
+      "config": {
+        "name": "vgg_style",
+        "label": "VGG-style",
+        "kind": "cnn",
+        "shape": [
+          16,
+          16,
+          1
+        ],
+        "outputs": 10,
+        "hidden": 32,
+        "spec": [
+          {
+            "op": "conv",
+            "name": "c1",
+            "inputs": 1,
+            "outputs": 16,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "c2",
+            "inputs": 16,
+            "outputs": 16,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "pool"
+          },
+          {
+            "op": "conv",
+            "name": "c3",
+            "inputs": 16,
+            "outputs": 32,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "c4",
+            "inputs": 32,
+            "outputs": 32,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "pool"
+          },
+          {
+            "op": "flatten"
+          },
+          {
+            "op": "linear",
+            "name": "fc",
+            "inputs": 512,
+            "outputs": 64
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "linear",
+            "name": "head",
+            "inputs": 64,
+            "outputs": 10
+          }
+        ]
+      },
+      "file": "mnist_model_vgg_style.npz",
+      "label": "VGG-style",
+      "framework": "pytorch",
+      "validation": {
+        "Accuracy": 0.9775,
+        "MacroF1": 0.9774283203968338
+      },
+      "test": {
+        "Accuracy": 0.9775,
+        "MacroF1": 0.9772900290894422
+      }
+    },
+    "mobilenet_style": {
+      "config": {
+        "name": "mobilenet_style",
+        "label": "MobileNet-style",
+        "kind": "cnn",
+        "shape": [
+          16,
+          16,
+          1
+        ],
+        "outputs": 10,
+        "hidden": 32,
+        "spec": [
+          {
+            "op": "conv",
+            "name": "stem",
+            "inputs": 1,
+            "outputs": 16,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "save"
+          },
+          {
+            "op": "conv",
+            "name": "expand1",
+            "inputs": 16,
+            "outputs": 32,
+            "kernel": 1,
+            "padding": 0,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "depth1",
+            "inputs": 32,
+            "outputs": 32,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 32
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "project1",
+            "inputs": 32,
+            "outputs": 16,
+            "kernel": 1,
+            "padding": 0,
+            "groups": 1
+          },
+          {
+            "op": "add"
+          },
+          {
+            "op": "pool"
+          },
+          {
+            "op": "conv",
+            "name": "expand2",
+            "inputs": 16,
+            "outputs": 48,
+            "kernel": 1,
+            "padding": 0,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "depth2",
+            "inputs": 48,
+            "outputs": 48,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 48
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "project2",
+            "inputs": 48,
+            "outputs": 24,
+            "kernel": 1,
+            "padding": 0,
+            "groups": 1
+          },
+          {
+            "op": "gap"
+          },
+          {
+            "op": "linear",
+            "name": "head",
+            "inputs": 24,
+            "outputs": 10
+          }
+        ]
+      },
+      "file": "mnist_model_mobilenet_style.npz",
+      "label": "MobileNet-style",
+      "framework": "pytorch",
+      "validation": {
+        "Accuracy": 0.8695,
+        "MacroF1": 0.8673777259422039
+      },
+      "test": {
+        "Accuracy": 0.877,
+        "MacroF1": 0.8753868449182868
+      }
+    },
+    "resnet_style": {
+      "config": {
+        "name": "resnet_style",
+        "label": "ResNet-style",
+        "kind": "cnn",
+        "shape": [
+          16,
+          16,
+          1
+        ],
+        "outputs": 10,
+        "hidden": 32,
+        "spec": [
+          {
+            "op": "conv",
+            "name": "stem",
+            "inputs": 1,
+            "outputs": 16,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "save"
+          },
+          {
+            "op": "conv",
+            "name": "r1a",
+            "inputs": 16,
+            "outputs": 16,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "r1b",
+            "inputs": 16,
+            "outputs": 16,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "add"
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "pool"
+          },
+          {
+            "op": "conv",
+            "name": "transition",
+            "inputs": 16,
+            "outputs": 32,
+            "kernel": 1,
+            "padding": 0,
+            "groups": 1
+          },
+          {
+            "op": "save"
+          },
+          {
+            "op": "conv",
+            "name": "r2a",
+            "inputs": 32,
+            "outputs": 32,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "r2b",
+            "inputs": 32,
+            "outputs": 32,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "add"
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "gap"
+          },
+          {
+            "op": "linear",
+            "name": "head",
+            "inputs": 32,
+            "outputs": 10
+          }
+        ]
+      },
+      "file": "mnist_model_resnet_style.npz",
+      "label": "ResNet-style",
+      "framework": "pytorch",
+      "validation": {
+        "Accuracy": 0.9515,
+        "MacroF1": 0.9513352502904933
+      },
+      "test": {
+        "Accuracy": 0.957,
+        "MacroF1": 0.9566689807070924
+      }
+    }
+  },
+  "eurosat": {
+    "basic_cnn": {
+      "config": {
+        "name": "basic_cnn",
+        "label": "CNN cơ bản",
+        "kind": "cnn",
+        "shape": [
+          16,
+          16,
+          3
+        ],
+        "outputs": 10,
+        "hidden": 32,
+        "spec": [
+          {
+            "op": "conv",
+            "name": "conv",
+            "inputs": 3,
+            "outputs": 8,
+            "kernel": 3,
+            "padding": 0,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "pool"
+          },
+          {
+            "op": "flatten"
+          },
+          {
+            "op": "linear",
+            "name": "head",
+            "inputs": 392,
+            "outputs": 10
+          }
+        ]
+      },
+      "file": "eurosat_model_basic_cnn.npz",
+      "label": "CNN cơ bản",
+      "framework": "pytorch",
+      "validation": {
+        "Accuracy": 0.623125,
+        "MacroF1": 0.613779881787502
+      },
+      "test": {
+        "Accuracy": 0.627,
+        "MacroF1": 0.6195375136619522
+      }
+    },
+    "vgg_style": {
+      "config": {
+        "name": "vgg_style",
+        "label": "VGG-style",
+        "kind": "cnn",
+        "shape": [
+          16,
+          16,
+          3
+        ],
+        "outputs": 10,
+        "hidden": 32,
+        "spec": [
+          {
+            "op": "conv",
+            "name": "c1",
+            "inputs": 3,
+            "outputs": 16,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "c2",
+            "inputs": 16,
+            "outputs": 16,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "pool"
+          },
+          {
+            "op": "conv",
+            "name": "c3",
+            "inputs": 16,
+            "outputs": 32,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "c4",
+            "inputs": 32,
+            "outputs": 32,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "pool"
+          },
+          {
+            "op": "flatten"
+          },
+          {
+            "op": "linear",
+            "name": "fc",
+            "inputs": 512,
+            "outputs": 64
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "linear",
+            "name": "head",
+            "inputs": 64,
+            "outputs": 10
+          }
+        ]
+      },
+      "file": "eurosat_model_vgg_style.npz",
+      "label": "VGG-style",
+      "framework": "pytorch",
+      "validation": {
+        "Accuracy": 0.69125,
+        "MacroF1": 0.6870482747222828
+      },
+      "test": {
+        "Accuracy": 0.7065,
+        "MacroF1": 0.7000354968803303
+      }
+    },
+    "mobilenet_style": {
+      "config": {
+        "name": "mobilenet_style",
+        "label": "MobileNet-style",
+        "kind": "cnn",
+        "shape": [
+          16,
+          16,
+          3
+        ],
+        "outputs": 10,
+        "hidden": 32,
+        "spec": [
+          {
+            "op": "conv",
+            "name": "stem",
+            "inputs": 3,
+            "outputs": 16,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "save"
+          },
+          {
+            "op": "conv",
+            "name": "expand1",
+            "inputs": 16,
+            "outputs": 32,
+            "kernel": 1,
+            "padding": 0,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "depth1",
+            "inputs": 32,
+            "outputs": 32,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 32
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "project1",
+            "inputs": 32,
+            "outputs": 16,
+            "kernel": 1,
+            "padding": 0,
+            "groups": 1
+          },
+          {
+            "op": "add"
+          },
+          {
+            "op": "pool"
+          },
+          {
+            "op": "conv",
+            "name": "expand2",
+            "inputs": 16,
+            "outputs": 48,
+            "kernel": 1,
+            "padding": 0,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "depth2",
+            "inputs": 48,
+            "outputs": 48,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 48
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "project2",
+            "inputs": 48,
+            "outputs": 24,
+            "kernel": 1,
+            "padding": 0,
+            "groups": 1
+          },
+          {
+            "op": "gap"
+          },
+          {
+            "op": "linear",
+            "name": "head",
+            "inputs": 24,
+            "outputs": 10
+          }
+        ]
+      },
+      "file": "eurosat_model_mobilenet_style.npz",
+      "label": "MobileNet-style",
+      "framework": "pytorch",
+      "validation": {
+        "Accuracy": 0.645,
+        "MacroF1": 0.636690654202426
+      },
+      "test": {
+        "Accuracy": 0.6395,
+        "MacroF1": 0.6273492695356361
+      }
+    },
+    "resnet_style": {
+      "config": {
+        "name": "resnet_style",
+        "label": "ResNet-style",
+        "kind": "cnn",
+        "shape": [
+          16,
+          16,
+          3
+        ],
+        "outputs": 10,
+        "hidden": 32,
+        "spec": [
+          {
+            "op": "conv",
+            "name": "stem",
+            "inputs": 3,
+            "outputs": 16,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "save"
+          },
+          {
+            "op": "conv",
+            "name": "r1a",
+            "inputs": 16,
+            "outputs": 16,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "r1b",
+            "inputs": 16,
+            "outputs": 16,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "add"
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "pool"
+          },
+          {
+            "op": "conv",
+            "name": "transition",
+            "inputs": 16,
+            "outputs": 32,
+            "kernel": 1,
+            "padding": 0,
+            "groups": 1
+          },
+          {
+            "op": "save"
+          },
+          {
+            "op": "conv",
+            "name": "r2a",
+            "inputs": 32,
+            "outputs": 32,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "conv",
+            "name": "r2b",
+            "inputs": 32,
+            "outputs": 32,
+            "kernel": 3,
+            "padding": 1,
+            "groups": 1
+          },
+          {
+            "op": "add"
+          },
+          {
+            "op": "relu"
+          },
+          {
+            "op": "gap"
+          },
+          {
+            "op": "linear",
+            "name": "head",
+            "inputs": 32,
+            "outputs": 10
+          }
+        ]
+      },
+      "file": "eurosat_model_resnet_style.npz",
+      "label": "ResNet-style",
+      "framework": "pytorch",
+      "validation": {
+        "Accuracy": 0.69125,
+        "MacroF1": 0.6828025613272748
+      },
+      "test": {
+        "Accuracy": 0.6915,
+        "MacroF1": 0.6799625410732658
+      }
+    }
+  },
+  "stock": {
+    "simple_rnn": {
+      "config": {
+        "name": "simple_rnn",
+        "label": "Simple RNN",
+        "kind": "rnn",
+        "shape": [
+          30,
+          8
+        ],
+        "outputs": 1,
+        "hidden": 32
+      },
+      "file": "stock_model_simple_rnn.npz",
+      "label": "Simple RNN",
+      "framework": "pytorch",
+      "validation": {
+        "RMSE": 2.5319386989758885,
+        "MAE": 1.8972621048228222,
+        "R2": 0.9808486639358108
+      },
+      "test": {
+        "RMSE": 3.964083750937289,
+        "MAE": 2.6789657157553095,
+        "R2": 0.9701657266393487
+      }
+    },
+    "lstm": {
+      "config": {
+        "name": "lstm",
+        "label": "LSTM",
+        "kind": "rnn",
+        "shape": [
+          30,
+          8
+        ],
+        "outputs": 1,
+        "hidden": 32
+      },
+      "file": "stock_model_lstm.npz",
+      "label": "LSTM",
+      "framework": "pytorch",
+      "validation": {
+        "RMSE": 2.5071341619090086,
+        "MAE": 1.8774690707360175,
+        "R2": 0.9812220640684327
+      },
+      "test": {
+        "RMSE": 3.894639123193245,
+        "MAE": 2.6561822181395187,
+        "R2": 0.971201871435932
+      }
+    },
+    "gru": {
+      "config": {
+        "name": "gru",
+        "label": "GRU",
+        "kind": "rnn",
+        "shape": [
+          30,
+          8
+        ],
+        "outputs": 1,
+        "hidden": 32
+      },
+      "file": "stock_model_gru.npz",
+      "label": "GRU",
+      "framework": "pytorch",
+      "validation": {
+        "RMSE": 2.5113047926337386,
+        "MAE": 1.8766654590254985,
+        "R2": 0.9811595377169237
+      },
+      "test": {
+        "RMSE": 3.9381099363136287,
+        "MAE": 2.6764141898393667,
+        "R2": 0.970555411226368
+      }
+    },
+    "bilstm": {
+      "config": {
+        "name": "bilstm",
+        "label": "BiLSTM",
+        "kind": "rnn",
+        "shape": [
+          30,
+          8
+        ],
+        "outputs": 1,
+        "hidden": 32
+      },
+      "file": "stock_model_bilstm.npz",
+      "label": "BiLSTM",
+      "framework": "pytorch",
+      "validation": {
+        "RMSE": 2.5167928428374653,
+        "MAE": 1.8722543676902297,
+        "R2": 0.98107710217798
+      },
+      "test": {
+        "RMSE": 3.925015805892953,
+        "MAE": 2.6446277490988956,
+        "R2": 0.9707508909447934
+      }
+    }
+  },
+  "customer": {
+    "simple_rnn": {
+      "config": {
+        "name": "simple_rnn",
+        "label": "Simple RNN",
+        "kind": "rnn",
+        "shape": [
+          8,
+          6
+        ],
+        "outputs": 2,
+        "hidden": 32
+      },
+      "file": "customer_model_simple_rnn.npz",
+      "label": "Simple RNN",
+      "framework": "pytorch",
+      "validation": {
+        "Accuracy": 0.7501685772083614,
+        "MacroF1": 0.5784561733139204,
+        "F1": 0.30941286113699906,
+        "Precision": 0.2225201072386059,
+        "Recall": 0.5076452599388379,
+        "AP": 0.3246381992977324,
+        "ROC_AUC": 0.7148529525941737
+      },
+      "test": {
+        "Accuracy": 0.7228754676643506,
+        "MacroF1": 0.5863083663395048,
+        "F1": 0.34861809045226133,
+        "Precision": 0.2544704264099037,
+        "Recall": 0.5533399800598205,
+        "AP": 0.3431829604336641,
+        "ROC_AUC": 0.705660444988134
+      }
+    },
+    "lstm": {
+      "config": {
+        "name": "lstm",
+        "label": "LSTM",
+        "kind": "rnn",
+        "shape": [
+          8,
+          6
+        ],
+        "outputs": 2,
+        "hidden": 32
+      },
+      "file": "customer_model_lstm.npz",
+      "label": "LSTM",
+      "framework": "pytorch",
+      "validation": {
+        "Accuracy": 0.7700606877950101,
+        "MacroF1": 0.591486044508531,
+        "F1": 0.32139303482587067,
+        "Precision": 0.23820058997050148,
+        "Recall": 0.4938837920489297,
+        "AP": 0.3284647657972527,
+        "ROC_AUC": 0.7191386726739464
+      },
+      "test": {
+        "Accuracy": 0.7493319080705505,
+        "MacroF1": 0.6051944768106606,
+        "F1": 0.36664415935178934,
+        "Precision": 0.2771822358346095,
+        "Recall": 0.5413758723828515,
+        "AP": 0.34567322949038165,
+        "ROC_AUC": 0.709530412004228
+      }
+    },
+    "gru": {
+      "config": {
+        "name": "gru",
+        "label": "GRU",
+        "kind": "rnn",
+        "shape": [
+          8,
+          6
+        ],
+        "outputs": 2,
+        "hidden": 32
+      },
+      "file": "customer_model_gru.npz",
+      "label": "GRU",
+      "framework": "pytorch",
+      "validation": {
+        "Accuracy": 0.7697235333782873,
+        "MacroF1": 0.5905626681585346,
+        "F1": 0.3197211155378486,
+        "Precision": 0.23707533234859676,
+        "Recall": 0.4908256880733945,
+        "AP": 0.3294337040156297,
+        "ROC_AUC": 0.7190532103138874
+      },
+      "test": {
+        "Accuracy": 0.7465259219668626,
+        "MacroF1": 0.6028909194935954,
+        "F1": 0.3640630238015421,
+        "Precision": 0.27424242424242423,
+        "Recall": 0.5413758723828515,
+        "AP": 0.3483398352666645,
+        "ROC_AUC": 0.7119893213431762
+      }
+    },
+    "bilstm": {
+      "config": {
+        "name": "bilstm",
+        "label": "BiLSTM",
+        "kind": "rnn",
+        "shape": [
+          8,
+          6
+        ],
+        "outputs": 2,
+        "hidden": 32
+      },
+      "file": "customer_model_bilstm.npz",
+      "label": "BiLSTM",
+      "framework": "pytorch",
+      "validation": {
+        "Accuracy": 0.7796695886716116,
+        "MacroF1": 0.5971267746884511,
+        "F1": 0.3259412068076328,
+        "Precision": 0.24591439688715952,
+        "Recall": 0.4831804281345566,
+        "AP": 0.33282509539257216,
+        "ROC_AUC": 0.7188915560870639
+      },
+      "test": {
+        "Accuracy": 0.7569481560662747,
+        "MacroF1": 0.610708668910877,
+        "F1": 0.372109078356921,
+        "Precision": 0.2845828933474129,
+        "Recall": 0.5373878364905285,
+        "AP": 0.3517138236177638,
+        "ROC_AUC": 0.7137345100941582
+      }
+    }
+  }
+}

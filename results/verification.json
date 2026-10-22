@@ -1,0 +1,144 @@
+{
+  "status": "passed",
+  "models": 18,
+  "checkpoints": [
+    {
+      "dataset": "diabetes",
+      "framework": "scratch",
+      "max_native_error": 0.0
+    },
+    {
+      "dataset": "diabetes",
+      "framework": "keras",
+      "max_native_error": 3.5762786865234375e-07
+    },
+    {
+      "dataset": "diabetes",
+      "framework": "pytorch",
+      "max_native_error": 4.76837158203125e-07
+    },
+    {
+      "dataset": "housing",
+      "framework": "scratch",
+      "max_native_error": 0.0
+    },
+    {
+      "dataset": "housing",
+      "framework": "keras",
+      "max_native_error": 5.960464477539063e-08
+    },
+    {
+      "dataset": "housing",
+      "framework": "pytorch",
+      "max_native_error": 1.1920928955078125e-07
+    },
+    {
+      "dataset": "mnist",
+      "framework": "scratch",
+      "max_native_error": 0.0
+    },
+    {
+      "dataset": "mnist",
+      "framework": "keras",
+      "max_native_error": 3.039836883544922e-06
+    },
+    {
+      "dataset": "mnist",
+      "framework": "pytorch",
+      "max_native_error": 3.3974647521972656e-06
+    },
+    {
+      "dataset": "eurosat",
+      "framework": "scratch",
+      "max_native_error": 0.0
+    },
+    {
+      "dataset": "eurosat",
+      "framework": "keras",
+      "max_native_error": 2.86102294921875e-06
+    },
+    {
+      "dataset": "eurosat",
+      "framework": "pytorch",
+      "max_native_error": 1.430511474609375e-06
+    },
+    {
+      "dataset": "stock",
+      "framework": "scratch",
+      "max_native_error": 0.0
+    },
+    {
+      "dataset": "stock",
+      "framework": "keras",
+      "max_native_error": 1.043081283569336e-07
+    },
+    {
+      "dataset": "stock",
+      "framework": "pytorch",
+      "max_native_error": 5.960464477539063e-08
+    },
+    {
+      "dataset": "customer",
+      "framework": "scratch",
+      "max_native_error": 0.0
+    },
+    {
+      "dataset": "customer",
+      "framework": "keras",
+      "max_native_error": 1.4901161193847656e-07
+    },
+    {
+      "dataset": "customer",
+      "framework": "pytorch",
+      "max_native_error": 2.384185791015625e-07
+    }
+  ],
+  "api_valid": 162,
+  "api_invalid": 6,
+  "notebooks": [
+    {
+      "notebook": "01_history_and_data.ipynb",
+      "cells": 4
+    },
+    {
+      "notebook": "02_ML_experiments.ipynb",
+      "cells": 16
+    },
+    {
+      "notebook": "03_CNN_experiments.ipynb",
+      "cells": 16
+    },
+    {
+      "notebook": "04_RNN_experiments.ipynb",
+      "cells": 18
+    },
+    {
+      "notebook": "05_comparison_deploy.ipynb",
+      "cells": 3
+    },
+    {
+      "notebook": "06_architecture_comparison.ipynb",
+      "cells": 31
+    }
+  ],
+  "gradient_checks": [
+    {
+      "kind": "mlp",
+      "framework_gradient_max_error": 1.1920928955078125e-07,
+      "finite_difference_max_error": 1.7197599455620605e-08,
+      "status": "passed"
+    },
+    {
+      "kind": "cnn",
+      "framework_gradient_max_error": 8.940696716308594e-08,
+      "finite_difference_max_error": 1.3878928478705532e-08,
+      "status": "passed"
+    },
+    {
+      "kind": "rnn",
+      "framework_gradient_max_error": 4.470348358154297e-08,
+      "finite_difference_max_error": 1.1741021120614814e-08,
+      "status": "passed"
+    }
+  ]
+}

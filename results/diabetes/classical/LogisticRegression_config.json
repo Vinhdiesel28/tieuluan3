@@ -1,0 +1,5 @@
+{
+  "name": "LogisticRegression",
+  "kind": "linear",
+  "task": "classification"
+}

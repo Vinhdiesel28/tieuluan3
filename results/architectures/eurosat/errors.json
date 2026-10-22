@@ -1,0 +1,32 @@
+[
+  {
+    "index": 8001,
+    "actual": 3.0,
+    "prediction": 7.0
+  },
+  {
+    "index": 8004,
+    "actual": 0.0,
+    "prediction": 7.0
+  },
+  {
+    "index": 8007,
+    "actual": 3.0,
+    "prediction": 6.0
+  },
+  {
+    "index": 8008,
+    "actual": 2.0,
+    "prediction": 3.0
+  },
+  {
+    "index": 8010,
+    "actual": 3.0,
+    "prediction": 0.0
+  },
+  {
+    "index": 8018,
+    "actual": 6.0,
+    "prediction": 0.0
+  }
+]

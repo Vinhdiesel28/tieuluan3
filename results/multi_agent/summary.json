@@ -1,0 +1,14 @@
+{
+  "agents": [
+    "RouterAgent",
+    "KnowledgeAgent",
+    "ModelAgent",
+    "VisionAgent",
+    "SequenceAgent",
+    "GuardAgent",
+    "CoordinatorAgent"
+  ],
+  "scenario_count": 6,
+  "needs_human": 3,
+  "supported": 3
+}

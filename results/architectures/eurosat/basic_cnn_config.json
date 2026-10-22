@@ -1,0 +1,38 @@
+{
+  "name": "basic_cnn",
+  "label": "CNN cơ bản",
+  "kind": "cnn",
+  "shape": [
+    16,
+    16,
+    3
+  ],
+  "outputs": 10,
+  "hidden": 32,
+  "spec": [
+    {
+      "op": "conv",
+      "name": "conv",
+      "inputs": 3,
+      "outputs": 8,
+      "kernel": 3,
+      "padding": 0,
+      "groups": 1
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "pool"
+    },
+    {
+      "op": "flatten"
+    },
+    {
+      "op": "linear",
+      "name": "head",
+      "inputs": 392,
+      "outputs": 10
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "name": "Ridge",
+  "kind": "linear",
+  "task": "regression"
+}

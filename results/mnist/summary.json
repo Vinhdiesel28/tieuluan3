@@ -1,0 +1,76 @@
+{
+  "kind": "cnn",
+  "task": "classification",
+  "classes": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "raw_rows": 70000,
+  "mean": [
+    0.13107748329639435
+  ],
+  "std": [
+    0.2632492780685425
+  ],
+  "source": "https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz",
+  "protocol": "Fixed stratified benchmark subset; MNIST preserves official test",
+  "transform": "Resize16 bilinear /255 then train channel mean/std",
+  "key": "mnist",
+  "shape": [
+    16,
+    16,
+    1
+  ],
+  "samples": 14000,
+  "splits": {
+    "train": 10000,
+    "val": 2000,
+    "test": 2000
+  },
+  "counts": {
+    "train": [
+      987,
+      1124,
+      993,
+      1022,
+      974,
+      904,
+      986,
+      1044,
+      975,
+      991
+    ],
+    "val": [
+      197,
+      225,
+      199,
+      204,
+      195,
+      181,
+      197,
+      209,
+      195,
+      198
+    ],
+    "test": [
+      196,
+      227,
+      206,
+      202,
+      196,
+      178,
+      192,
+      206,
+      195,
+      202
+    ]
+  }
+}

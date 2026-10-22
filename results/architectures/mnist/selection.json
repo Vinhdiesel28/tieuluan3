@@ -1,0 +1,5 @@
+{
+  "name": "vgg_style",
+  "criterion": "MacroF1",
+  "split": "validation"
+}

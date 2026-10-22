@@ -1,0 +1,11 @@
+{
+  "name": "gru",
+  "label": "GRU",
+  "kind": "rnn",
+  "shape": [
+    30,
+    8
+  ],
+  "outputs": 1,
+  "hidden": 32
+}

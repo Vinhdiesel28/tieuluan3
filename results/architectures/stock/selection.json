@@ -1,0 +1,5 @@
+{
+  "name": "lstm",
+  "criterion": "RMSE",
+  "split": "validation"
+}

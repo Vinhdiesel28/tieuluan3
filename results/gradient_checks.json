@@ -1,0 +1,20 @@
+[
+  {
+    "kind": "mlp",
+    "framework_gradient_max_error": 1.1920928955078125e-07,
+    "finite_difference_max_error": 1.7197599455620605e-08,
+    "status": "passed"
+  },
+  {
+    "kind": "cnn",
+    "framework_gradient_max_error": 8.940696716308594e-08,
+    "finite_difference_max_error": 1.3878928478705532e-08,
+    "status": "passed"
+  },
+  {
+    "kind": "rnn",
+    "framework_gradient_max_error": 4.470348358154297e-08,
+    "finite_difference_max_error": 1.1741021120614814e-08,
+    "status": "passed"
+  }
+]

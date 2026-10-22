@@ -1,0 +1,98 @@
+[
+  {
+    "id": "health_overview",
+    "domain": "health",
+    "title": "WHO - Tổng quan đái tháo đường",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/diabetes",
+    "as_of": "2024-11-14",
+    "text": "Đái tháo đường là bệnh mạn tính xảy ra khi tuyến tụy không sản xuất đủ insulin hoặc cơ thể không sử dụng insulin hiệu quả. Tăng glucose kéo dài có thể gây tổn thương tim, mạch máu, mắt, thận và thần kinh. Type 1 đặc trưng bởi thiếu sản xuất insulin; type 2 liên quan cơ thể sử dụng insulin không hiệu quả."
+  },
+  {
+    "id": "health_symptoms",
+    "domain": "health",
+    "title": "CDC - Dấu hiệu và triệu chứng đái tháo đường",
+    "url": "https://www.cdc.gov/diabetes/signs-symptoms/",
+    "as_of": "2024-05-15",
+    "text": "Các dấu hiệu có thể gặp gồm tiểu nhiều, khát nhiều, đói nhiều, sụt cân không chủ ý, mệt mỏi và nhìn mờ. Type 2 có thể phát triển trong nhiều năm và một số người không nhận thấy triệu chứng. Vết thương chậm lành và tê bì tay chân cũng có thể gặp ở type 2."
+  },
+  {
+    "id": "health_testing",
+    "domain": "health",
+    "title": "NIDDK - Xét nghiệm và chẩn đoán đái tháo đường",
+    "url": "https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis",
+    "as_of": "2026-10-22",
+    "text": "Bác sĩ có thể dùng A1C, glucose huyết tương lúc đói, nghiệm pháp dung nạp glucose đường uống và glucose huyết tương ngẫu nhiên để đánh giá đái tháo đường. A1C phản ánh mức glucose trung bình khoảng ba tháng. Thông thường cần phép đo xác nhận; máy đo đường huyết mua ngoài không tự chẩn đoán bệnh."
+  },
+  {
+    "id": "health_prevention",
+    "domain": "health",
+    "title": "WHO - Phòng ngừa type 2",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/diabetes",
+    "as_of": "2024-11-14",
+    "text": "Chế độ ăn lành mạnh, hoạt động thể lực thường xuyên, duy trì cân nặng phù hợp và tránh thuốc lá có thể giúp phòng ngừa hoặc làm chậm type 2. Người đã được chẩn đoán cần theo kế hoạch theo dõi và điều trị của nhân viên y tế."
+  },
+  {
+    "id": "health_dataset",
+    "domain": "health",
+    "title": "Dataset CDC Diabetes Health Indicators",
+    "url": "https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset",
+    "as_of": "2026-10-22",
+    "text": "Bản dùng trong tiểu luận có 253680 hàng và 21 biến dự báo sức khỏe từ BRFSS 2015. Nhãn lớp dương gộp tiền đái tháo đường hoặc đái tháo đường. Benchmark dùng 25000 mẫu sau khi chia theo nhóm predictor giống nhau để giảm rò rỉ bản ghi trùng thuộc tính."
+  },
+  {
+    "id": "health_model",
+    "domain": "health",
+    "title": "Model card - MLP Diabetes",
+    "url": "https://github.com/Vinhdiesel28/tieuluan3",
+    "as_of": "2026-10-22",
+    "text": "MLP trong tiểu luận là mô hình phân loại thống kê dùng cho học tập. Score chưa được calibration cho sử dụng lâm sàng, không phân biệt type 1 và type 2, không thay thế xét nghiệm hoặc chẩn đoán. Quyết định lựa chọn model dựa trên validation trước khi đọc test."
+  },
+  {
+    "id": "stock_dataset",
+    "domain": "finance",
+    "title": "Dataset AAPL 2015-2025",
+    "url": "https://github.com/tuananhtrieu1305/ISD_Assignment01/tree/main/A06/datasets",
+    "as_of": "2025-12-31",
+    "text": "Dataset AAPL có 2766 phiên từ 2015-01-02 đến 2025-12-31 với Date, Open, High, Low, Close, Adj Close và Volume. Bài tạo cửa sổ 30 phiên và tám đặc trưng từ OHLCV để dự báo log-return phiên kế tiếp rồi đổi về giá USD."
+  },
+  {
+    "id": "stock_ohlcv",
+    "domain": "finance",
+    "title": "Ý nghĩa dữ liệu OHLCV",
+    "url": "https://finance.yahoo.com/quote/AAPL/history/",
+    "as_of": "2025-12-31",
+    "text": "Open, High, Low và Close mô tả bốn mức giá của một phiên; Volume là khối lượng giao dịch. Adj Close điều chỉnh cho một số hành động doanh nghiệp. Mốc thời gian, ticker và tiền tệ phải đi cùng quan sát giá để tránh ghép sai dữ liệu."
+  },
+  {
+    "id": "stock_return",
+    "domain": "finance",
+    "title": "Đặc trưng chuỗi AAPL",
+    "url": "https://github.com/Vinhdiesel28/tieuluan3",
+    "as_of": "2026-10-22",
+    "text": "Đặc trưng chuỗi gồm log-return của Open, High, Low, Close, log Volume, độ lệch Close so với MA5 và MA20, cùng log tỷ lệ High/Low. Mean và standard deviation chỉ fit trên train; validation và test được chia theo thời gian để không dùng tương lai."
+  },
+  {
+    "id": "stock_baseline",
+    "domain": "finance",
+    "title": "Mốc dự báo Last value",
+    "url": "https://github.com/Vinhdiesel28/tieuluan3",
+    "as_of": "2026-10-22",
+    "text": "Mốc Last value dự báo giá phiên tiếp theo bằng giá Close gần nhất. Trên test AAPL của tiểu luận, mô hình chuỗi chưa tạo cải thiện có ý nghĩa thực hành so với mốc này. R-squared cao chủ yếu phản ánh chuỗi mức giá trơn và không chứng minh lợi thế đầu tư."
+  },
+  {
+    "id": "apple_ir",
+    "domain": "finance",
+    "title": "Apple Investor Relations",
+    "url": "https://investor.apple.com/investor-relations/",
+    "as_of": "2026-10-22",
+    "text": "Trang Investor Relations của Apple công bố báo cáo kết quả theo quý, báo cáo tài chính và Annual Reports on Form 10-K. Báo cáo doanh nghiệp và chuỗi giá thị trường là hai loại nguồn khác nhau; một nguồn không thay thế nguồn còn lại."
+  },
+  {
+    "id": "stock_limits",
+    "domain": "finance",
+    "title": "Giới hạn dự báo tài chính",
+    "url": "https://github.com/Vinhdiesel28/tieuluan3",
+    "as_of": "2026-10-22",
+    "text": "Dự báo từ mô hình RNN là kết quả thực nghiệm trên dữ liệu lịch sử, không phải cam kết về giá tương lai hoặc khuyến nghị mua bán. Một câu hỏi về giá chính xác trong tương lai không có bằng chứng quan sát và Agent phải nêu thiếu dữ liệu thay vì tạo con số."
+  }
+]

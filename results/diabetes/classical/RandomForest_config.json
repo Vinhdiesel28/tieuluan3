@@ -1,0 +1,6 @@
+{
+  "name": "RandomForest",
+  "kind": "forest",
+  "task": "classification",
+  "trees": 100
+}

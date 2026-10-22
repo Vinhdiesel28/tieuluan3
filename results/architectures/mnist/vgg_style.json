@@ -1,0 +1,21 @@
+{
+  "name": "vgg_style",
+  "label": "VGG-style",
+  "seed": 42,
+  "epochs": 20,
+  "best_epoch": 18,
+  "optimizer": "Adam",
+  "lr": 0.001,
+  "batch": 128,
+  "parameters": 49850,
+  "seconds": 39.287164699984714,
+  "validation": {
+    "Accuracy": 0.9775,
+    "MacroF1": 0.9774283203968338
+  },
+  "test": {
+    "Accuracy": 0.9775,
+    "MacroF1": 0.9772900290894422
+  },
+  "numpy_max_error": 5.245208740234375e-06
+}

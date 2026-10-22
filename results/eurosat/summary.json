@@ -1,0 +1,80 @@
+{
+  "kind": "cnn",
+  "task": "classification",
+  "classes": [
+    "AnnualCrop",
+    "Forest",
+    "HerbaceousVegetation",
+    "Highway",
+    "Industrial",
+    "Pasture",
+    "PermanentCrop",
+    "Residential",
+    "River",
+    "SeaLake"
+  ],
+  "raw_rows": 27000,
+  "mean": [
+    0.34342673420906067,
+    0.3801611661911011,
+    0.40783727169036865
+  ],
+  "std": [
+    0.19104278087615967,
+    0.12556222081184387,
+    0.10487159341573715
+  ],
+  "source": "https://zenodo.org/records/7711810",
+  "protocol": "Fixed stratified benchmark subset; MNIST preserves official test",
+  "transform": "Resize16 bilinear /255 then train channel mean/std",
+  "key": "eurosat",
+  "shape": [
+    16,
+    16,
+    3
+  ],
+  "samples": 10000,
+  "splits": {
+    "train": 6400,
+    "val": 1600,
+    "test": 2000
+  },
+  "counts": {
+    "train": [
+      711,
+      711,
+      711,
+      593,
+      593,
+      474,
+      593,
+      710,
+      593,
+      711
+    ],
+    "val": [
+      178,
+      178,
+      178,
+      148,
+      148,
+      118,
+      148,
+      178,
+      148,
+      178
+    ],
+    "test": [
+      222,
+      222,
+      222,
+      185,
+      185,
+      149,
+      185,
+      223,
+      185,
+      222
+    ]
+  }
+}

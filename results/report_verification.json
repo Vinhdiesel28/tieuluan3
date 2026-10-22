@@ -1,0 +1,32 @@
+{
+  "pages": 76,
+  "introduction": [
+    5,
+    8
+  ],
+  "history": [
+    9,
+    16
+  ],
+  "ml": [
+    17,
+    28
+  ],
+  "cnn": [
+    29,
+    42
+  ],
+  "rnn": [
+    43,
+    56
+  ],
+  "knowledge_rag": [
+    57,
+    64
+  ],
+  "multi_agent": [
+    65,
+    70
+  ],
+  "all_pages_rendered": true
+}

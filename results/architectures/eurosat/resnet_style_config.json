@@ -1,0 +1,107 @@
+{
+  "name": "resnet_style",
+  "label": "ResNet-style",
+  "kind": "cnn",
+  "shape": [
+    16,
+    16,
+    3
+  ],
+  "outputs": 10,
+  "hidden": 32,
+  "spec": [
+    {
+      "op": "conv",
+      "name": "stem",
+      "inputs": 3,
+      "outputs": 16,
+      "kernel": 3,
+      "padding": 1,
+      "groups": 1
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "save"
+    },
+    {
+      "op": "conv",
+      "name": "r1a",
+      "inputs": 16,
+      "outputs": 16,
+      "kernel": 3,
+      "padding": 1,
+      "groups": 1
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "conv",
+      "name": "r1b",
+      "inputs": 16,
+      "outputs": 16,
+      "kernel": 3,
+      "padding": 1,
+      "groups": 1
+    },
+    {
+      "op": "add"
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "pool"
+    },
+    {
+      "op": "conv",
+      "name": "transition",
+      "inputs": 16,
+      "outputs": 32,
+      "kernel": 1,
+      "padding": 0,
+      "groups": 1
+    },
+    {
+      "op": "save"
+    },
+    {
+      "op": "conv",
+      "name": "r2a",
+      "inputs": 32,
+      "outputs": 32,
+      "kernel": 3,
+      "padding": 1,
+      "groups": 1
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "conv",
+      "name": "r2b",
+      "inputs": 32,
+      "outputs": 32,
+      "kernel": 3,
+      "padding": 1,
+      "groups": 1
+    },
+    {
+      "op": "add"
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "gap"
+    },
+    {
+      "op": "linear",
+      "name": "head",
+      "inputs": 32,
+      "outputs": 10
+    }
+  ]
+}

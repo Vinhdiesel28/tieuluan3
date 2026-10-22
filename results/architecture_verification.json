@@ -1,0 +1,129 @@
+{
+  "status": "passed",
+  "extra_models": 20,
+  "models_total": 38,
+  "records": [
+    {
+      "dataset": "diabetes",
+      "model": "LogisticRegression",
+      "test_samples": 5000,
+      "max_export_error": 2.220446049250313e-16
+    },
+    {
+      "dataset": "diabetes",
+      "model": "RandomForest",
+      "test_samples": 5000,
+      "max_export_error": 1.7763568394002505e-15
+    },
+    {
+      "dataset": "housing",
+      "model": "Ridge",
+      "test_samples": 5964,
+      "max_export_error": 0.0
+    },
+    {
+      "dataset": "housing",
+      "model": "RandomForest",
+      "test_samples": 5964,
+      "max_export_error": 4.440892098500626e-16
+    },
+    {
+      "dataset": "mnist",
+      "model": "basic_cnn",
+      "test_samples": 2000,
+      "max_export_error": 5.7220458984375e-06
+    },
+    {
+      "dataset": "mnist",
+      "model": "vgg_style",
+      "test_samples": 2000,
+      "max_export_error": 9.5367431640625e-06
+    },
+    {
+      "dataset": "mnist",
+      "model": "mobilenet_style",
+      "test_samples": 2000,
+      "max_export_error": 5.7220458984375e-06
+    },
+    {
+      "dataset": "mnist",
+      "model": "resnet_style",
+      "test_samples": 2000,
+      "max_export_error": 1.049041748046875e-05
+    },
+    {
+      "dataset": "eurosat",
+      "model": "basic_cnn",
+      "test_samples": 2000,
+      "max_export_error": 1.239776611328125e-05
+    },
+    {
+      "dataset": "eurosat",
+      "model": "vgg_style",
+      "test_samples": 2000,
+      "max_export_error": 9.5367431640625e-06
+    },
+    {
+      "dataset": "eurosat",
+      "model": "mobilenet_style",
+      "test_samples": 2000,
+      "max_export_error": 3.814697265625e-06
+    },
+    {
+      "dataset": "eurosat",
+      "model": "resnet_style",
+      "test_samples": 2000,
+      "max_export_error": 5.7220458984375e-06
+    },
+    {
+      "dataset": "stock",
+      "model": "simple_rnn",
+      "test_samples": 404,
+      "max_export_error": 8.940696716308594e-08
+    },
+    {
+      "dataset": "stock",
+      "model": "lstm",
+      "test_samples": 404,
+      "max_export_error": 7.450580596923828e-08
+    },
+    {
+      "dataset": "stock",
+      "model": "gru",
+      "test_samples": 404,
+      "max_export_error": 7.450580596923828e-08
+    },
+    {
+      "dataset": "stock",
+      "model": "bilstm",
+      "test_samples": 404,
+      "max_export_error": 5.960464477539063e-08
+    },
+    {
+      "dataset": "customer",
+      "model": "simple_rnn",
+      "test_samples": 7484,
+      "max_export_error": 3.5762786865234375e-07
+    },
+    {
+      "dataset": "customer",
+      "model": "lstm",
+      "test_samples": 7484,
+      "max_export_error": 4.76837158203125e-07
+    },
+    {
+      "dataset": "customer",
+      "model": "gru",
+      "test_samples": 7484,
+      "max_export_error": 4.76837158203125e-07
+    },
+    {
+      "dataset": "customer",
+      "model": "bilstm",
+      "test_samples": 7484,
+      "max_export_error": 5.364418029785156e-07
+    }
+  ],
+  "extra_api_examples": 120,
+  "invalid_cases": 3
+}

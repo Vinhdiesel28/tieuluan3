@@ -1,0 +1,18 @@
+{
+  "framework": "keras",
+  "seed": 42,
+  "epochs": 20,
+  "best_epoch": 20,
+  "lr": 0.04,
+  "batch": 128,
+  "parameters": 4010,
+  "seconds": 5.071639299974777,
+  "validation": {
+    "Accuracy": 0.944,
+    "MacroF1": 0.9435535718427429
+  },
+  "test": {
+    "Accuracy": 0.9405,
+    "MacroF1": 0.9399979606254509
+  }
+}

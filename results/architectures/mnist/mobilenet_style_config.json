@@ -1,0 +1,110 @@
+{
+  "name": "mobilenet_style",
+  "label": "MobileNet-style",
+  "kind": "cnn",
+  "shape": [
+    16,
+    16,
+    1
+  ],
+  "outputs": 10,
+  "hidden": 32,
+  "spec": [
+    {
+      "op": "conv",
+      "name": "stem",
+      "inputs": 1,
+      "outputs": 16,
+      "kernel": 3,
+      "padding": 1,
+      "groups": 1
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "save"
+    },
+    {
+      "op": "conv",
+      "name": "expand1",
+      "inputs": 16,
+      "outputs": 32,
+      "kernel": 1,
+      "padding": 0,
+      "groups": 1
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "conv",
+      "name": "depth1",
+      "inputs": 32,
+      "outputs": 32,
+      "kernel": 3,
+      "padding": 1,
+      "groups": 32
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "conv",
+      "name": "project1",
+      "inputs": 32,
+      "outputs": 16,
+      "kernel": 1,
+      "padding": 0,
+      "groups": 1
+    },
+    {
+      "op": "add"
+    },
+    {
+      "op": "pool"
+    },
+    {
+      "op": "conv",
+      "name": "expand2",
+      "inputs": 16,
+      "outputs": 48,
+      "kernel": 1,
+      "padding": 0,
+      "groups": 1
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "conv",
+      "name": "depth2",
+      "inputs": 48,
+      "outputs": 48,
+      "kernel": 3,
+      "padding": 1,
+      "groups": 48
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "conv",
+      "name": "project2",
+      "inputs": 48,
+      "outputs": 24,
+      "kernel": 1,
+      "padding": 0,
+      "groups": 1
+    },
+    {
+      "op": "gap"
+    },
+    {
+      "op": "linear",
+      "name": "head",
+      "inputs": 24,
+      "outputs": 10
+    }
+  ]
+}

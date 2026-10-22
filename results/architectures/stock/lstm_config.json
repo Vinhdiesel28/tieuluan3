@@ -1,0 +1,11 @@
+{
+  "name": "lstm",
+  "label": "LSTM",
+  "kind": "rnn",
+  "shape": [
+    30,
+    8
+  ],
+  "outputs": 1,
+  "hidden": 32
+}

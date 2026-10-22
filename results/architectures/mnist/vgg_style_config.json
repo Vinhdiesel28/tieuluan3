@@ -1,0 +1,86 @@
+{
+  "name": "vgg_style",
+  "label": "VGG-style",
+  "kind": "cnn",
+  "shape": [
+    16,
+    16,
+    1
+  ],
+  "outputs": 10,
+  "hidden": 32,
+  "spec": [
+    {
+      "op": "conv",
+      "name": "c1",
+      "inputs": 1,
+      "outputs": 16,
+      "kernel": 3,
+      "padding": 1,
+      "groups": 1
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "conv",
+      "name": "c2",
+      "inputs": 16,
+      "outputs": 16,
+      "kernel": 3,
+      "padding": 1,
+      "groups": 1
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "pool"
+    },
+    {
+      "op": "conv",
+      "name": "c3",
+      "inputs": 16,
+      "outputs": 32,
+      "kernel": 3,
+      "padding": 1,
+      "groups": 1
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "conv",
+      "name": "c4",
+      "inputs": 32,
+      "outputs": 32,
+      "kernel": 3,
+      "padding": 1,
+      "groups": 1
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "pool"
+    },
+    {
+      "op": "flatten"
+    },
+    {
+      "op": "linear",
+      "name": "fc",
+      "inputs": 512,
+      "outputs": 64
+    },
+    {
+      "op": "relu"
+    },
+    {
+      "op": "linear",
+      "name": "head",
+      "inputs": 64,
+      "outputs": 10
+    }
+  ]
+}

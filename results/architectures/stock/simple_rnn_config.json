@@ -1,0 +1,11 @@
+{
+  "name": "simple_rnn",
+  "label": "Simple RNN",
+  "kind": "rnn",
+  "shape": [
+    30,
+    8
+  ],
+  "outputs": 1,
+  "hidden": 32
+}

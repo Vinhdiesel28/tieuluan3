@@ -1,0 +1,134 @@
+{
+  "kind": "rnn",
+  "task": "regression",
+  "classes": [
+    "No purchase",
+    "Purchase"
+  ],
+  "raw_rows": 2766,
+  "source": "https://github.com/tuananhtrieu1305/ISD_Assignment01/tree/main/A06/datasets",
+  "protocol": "Chronological 70/15/15 by target date; features only from earlier dates",
+  "transform": "Causal OHLCV indicators, train standardization",
+  "features": [
+    "LogReturn",
+    "OpenGap",
+    "Range",
+    "Body",
+    "RelativeMA20",
+    "RelativeMA50",
+    "Volatility20",
+    "LogVolume"
+  ],
+  "mean": [
+    0.0008318194886669517,
+    0.0002356943441554904,
+    0.02023722045123577,
+    0.0007722491282038391,
+    0.00855165533721447,
+    0.022623635828495026,
+    0.01673060655593872,
+    18.586061477661133
+  ],
+  "std": [
+    0.01866917684674263,
+    0.012287449091672897,
+    0.012385977432131767,
+    0.01410308200865984,
+    0.043871574103832245,
+    0.07341069728136063,
+    0.008251125924289227,
+    0.42617061734199524
+  ],
+  "y_mean": 0.0007597312796860933,
+  "y_std": 0.01875378005206585,
+  "periods": {
+    "train": [
+      "2015-04-28",
+      "2022-10-12"
+    ],
+    "validation": [
+      "2022-10-13",
+      "2024-05-21"
+    ],
+    "test": [
+      "2024-05-22",
+      "2025-12-31"
+    ]
+  },
+  "details": {
+    "dataset": "AAPL historical stock",
+    "raw_rows": 2766,
+    "start": "2015-01-02",
+    "end": "2025-12-31",
+    "features": [
+      "LogReturn",
+      "OpenGap",
+      "Range",
+      "Body",
+      "RelativeMA20",
+      "RelativeMA50",
+      "Volatility20",
+      "LogVolume"
+    ],
+    "lookback": 30,
+    "target": "Next-session log return; convert to Close = last Close * exp(return)",
+    "split": "Chronological 70/15/15 by target date; features only from earlier dates",
+    "price_column": "Close (not Adj Close)",
+    "key": "stock",
+    "samples": 2687,
+    "input_shape": [
+      30,
+      8
+    ],
+    "train": 1880,
+    "validation": 403,
+    "test": 404,
+    "x_mean": [
+      0.0008318194886669517,
+      0.0002356943441554904,
+      0.02023722045123577,
+      0.0007722491282038391,
+      0.00855165533721447,
+      0.022623635828495026,
+      0.01673060655593872,
+      18.586061477661133
+    ],
+    "x_std": [
+      0.01866917684674263,
+      0.012287449091672897,
+      0.012385977432131767,
+      0.01410308200865984,
+      0.043871574103832245,
+      0.07341069728136063,
+      0.008251125924289227,
+      0.42617061734199524
+    ],
+    "y_mean": 0.0007597312796860933,
+    "y_std": 0.01875378005206585,
+    "periods": {
+      "train": [
+        "2015-04-28",
+        "2022-10-12"
+      ],
+      "validation": [
+        "2022-10-13",
+        "2024-05-21"
+      ],
+      "test": [
+        "2024-05-22",
+        "2025-12-31"
+      ]
+    }
+  },
+  "key": "stock",
+  "shape": [
+    30,
+    8
+  ],
+  "samples": 2687,
+  "splits": {
+    "train": 1880,
+    "val": 403,
+    "test": 404
+  }
+}

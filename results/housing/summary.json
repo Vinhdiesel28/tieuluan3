@@ -1,0 +1,53 @@
+{
+  "kind": "mlp",
+  "task": "regression",
+  "raw_rows": 30229,
+  "features": [
+    "Area",
+    "Frontage",
+    "Access Road",
+    "Floors",
+    "Bedrooms",
+    "Bathrooms"
+  ],
+  "median": [
+    56.0,
+    4.5,
+    6.0,
+    3.0,
+    3.0,
+    3.0
+  ],
+  "source": "https://www.kaggle.com/datasets/nguyentiennhan/vietnam-housing-dataset-2024",
+  "protocol": "Group split by exact Address, 64/16/20 approximate rows; no location feature",
+  "transform": "log1p numeric, train mean/std",
+  "unit": "billion VND",
+  "mean": [
+    4.088815212249756,
+    1.7456917762756348,
+    1.9657090902328491,
+    1.4308987855911255,
+    1.4552807807922363,
+    1.4111732244491577
+  ],
+  "std": [
+    0.5021942853927612,
+    0.2529580593109131,
+    0.4362287223339081,
+    0.30884426832199097,
+    0.2616521418094635,
+    0.2868594825267792
+  ],
+  "y_mean": 1.8726775646209717,
+  "y_std": 0.3586936295032501,
+  "key": "housing",
+  "shape": [
+    6
+  ],
+  "samples": 30229,
+  "splits": {
+    "train": 19600,
+    "val": 4665,
+    "test": 5964
+  }
+}

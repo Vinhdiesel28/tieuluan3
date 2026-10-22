@@ -1,0 +1,23 @@
+{
+  "name": "simple_rnn",
+  "label": "Simple RNN",
+  "seed": 42,
+  "epochs": 20,
+  "best_epoch": 4,
+  "optimizer": "Adam",
+  "lr": 0.001,
+  "batch": 128,
+  "parameters": 1377,
+  "seconds": 2.759053000016138,
+  "validation": {
+    "RMSE": 2.5319386989758885,
+    "MAE": 1.8972621048228222,
+    "R2": 0.9808486639358108
+  },
+  "test": {
+    "RMSE": 3.964083750937289,
+    "MAE": 2.6789657157553095,
+    "R2": 0.9701657266393487
+  },
+  "numpy_max_error": 4.470348358154297e-08
+}

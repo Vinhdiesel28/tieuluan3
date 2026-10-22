@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: tieuluan3-vinh-intellilab
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements-web.txt
+    startCommand: gunicorn --chdir web app:app --bind 0.0.0.0:$PORT --workers 1 --threads 2
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: OPENBLAS_NUM_THREADS
+        value: "1"
