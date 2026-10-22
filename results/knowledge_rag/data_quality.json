@@ -1,0 +1,13 @@
+{
+  "documents": 12,
+  "triples": 23,
+  "queries": 15,
+  "domains": {
+    "finance": 6,
+    "health": 6
+  },
+  "document_hash": "af28a6ee38b629577161bd10bf86da7d50979a1776415aa93c81283f019758b2",
+  "graph_hash": "af4a797c7dae393b9a337d0d842e482eaaddd54233cbc0f31c7da25e1ded3047",
+  "benchmark_hash": "ae3c41b07ac0a30c1742149cb6aec9800b915e08701bebec0b6129e92b37bbfa",
+  "status": "valid"
+}

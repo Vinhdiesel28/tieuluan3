@@ -8,8 +8,13 @@ from collections import Counter, defaultdict, deque
 from pathlib import Path
 
 import numpy as np
+from knowledge_pipeline import METHODS, canonical_sha256, validate_request
 
 ROOT = Path(__file__).resolve().parents[1]
+STOPWORDS = {
+    "a", "an", "and", "are", "as", "at", "be", "by", "for", "from", "in", "is", "it", "of", "on", "or", "that", "the", "to", "what", "which", "with",
+    "ai", "bi", "cac", "cho", "co", "cua", "da", "de", "duoc", "gi", "hay", "khi", "khong", "la", "mot", "nay", "nhu", "nhung", "ra", "sao", "the", "thi", "trong", "tu", "va", "vi", "voi",
+}
 
 
 def normalize(text: str) -> str:
@@ -19,7 +24,7 @@ def normalize(text: str) -> str:
 
 
 def tokenize(text: str) -> list[str]:
-    return normalize(text).split()
+    return [token for token in normalize(text).split() if token not in STOPWORDS]
 
 
 class KnowledgeRAG:
@@ -30,6 +35,7 @@ class KnowledgeRAG:
         self.documents = json.loads((folder / "corpus.json").read_text(encoding="utf-8"))
         self.triples = json.loads((folder / "graph.json").read_text(encoding="utf-8"))
         self.by_id = {d["id"]: d for d in self.documents}
+        self.corpus_sha256 = canonical_sha256(self.documents)
         if any(t["evidence"] not in self.by_id for t in self.triples):
             raise ValueError("Graph chứa evidence id không tồn tại trong corpus.")
         self.doc_tokens = [tokenize(d["text"] + " " + d["title"]) for d in self.documents]
@@ -115,7 +121,19 @@ class KnowledgeRAG:
                 scores[doc_id] += weight / (constant + rank)
         return sorted(scores.items(), key=lambda x: (-x[1], x[0]))
 
+    @staticmethod
+    def guardrail_reason(query: str) -> str | None:
+        q = normalize(query)
+        patterns = {
+            "Yêu cầu dự báo chắc chắn về tương lai.": ["chac chan", "gia ngay mai", "ngay mai bang bao nhieu"],
+            "Yêu cầu kê đơn hoặc lựa chọn điều trị cá nhân.": ["ke don", "lieu thuoc", "thuoc nao cho toi"],
+            "Yêu cầu khuyến nghị mua hoặc bán tài sản.": ["co nen mua", "nen mua", "nen ban", "mua hay ban", "khuyen nghi dau tu"],
+        }
+        return next((reason for reason, terms in patterns.items() if any(term in q for term in terms)), None)
+
     def retrieve(self, query: str, method: str = "GraphRAG", top_k: int = 3, hops: int = 2, domain: str | None = None):
+        request = validate_request({"question": query, "method": method, "top_k": top_k, "hops": hops, "domain": domain})
+        query, method, top_k, hops, domain = (request[k] for k in ["question", "method", "top_k", "hops", "domain"])
         bm, ls = self.bm25(query), self.lsa(query)
         kg, paths = self.graph(query, hops)
         methods = {
@@ -132,19 +150,54 @@ class KnowledgeRAG:
             ranking = [(doc_id, score) for doc_id, score in ranking if self.by_id[doc_id]["domain"] == domain]
         results = [{**self.by_id[doc_id], "score": round(score, 6)} for doc_id, score in ranking[:top_k]]
         selected = {d["id"] for d in results}
-        return {"method": method, "query": query, "documents": results, "paths": [p for p in paths if p["evidence"] in selected]}
+        return {
+            "method": method,
+            "system": next((key for key, value in METHODS.items() if value == method), method),
+            "query": query,
+            "documents": results,
+            "paths": [p for p in paths if p["evidence"] in selected],
+            "config": {"top_k": top_k, "hops": hops, "domain": domain},
+            "request_sha256": canonical_sha256(request),
+            "corpus_sha256": self.corpus_sha256,
+        }
+
+    def compare(self, query: str, top_k: int = 3, hops: int = 2, domain: str | None = None):
+        """Run the five locked B0–B4 systems on exactly the same request."""
+        return {system: self.retrieve(query, method, top_k, hops, domain) for system, method in METHODS.items()}
 
     def answer(self, query: str, method: str = "GraphRAG", top_k: int = 3, hops: int = 2, domain: str | None = None):
         result = self.retrieve(query, method, top_k, hops, domain)
         docs = result["documents"]
-        if not docs:
+        reason = self.guardrail_reason(query)
+        query_terms = set(tokenize(query))
+        lexical_overlap = max((len(query_terms & set(tokenize(d["title"] + " " + d["text"]))) for d in docs), default=0)
+        graph_evidence, _ = self.graph(query, hops)
+        if not reason and lexical_overlap < 2 and not graph_evidence:
+            reason = "Câu hỏi nằm ngoài phạm vi kho tri thức hiện tại."
+        if reason:
+            text = "Hệ thống từ chối đưa ra kết luận: " + reason
+            citations = []
+            abstained = True
+        elif not docs:
             text = "Kho tri thức không có bằng chứng phù hợp để trả lời câu hỏi này."
+            citations = []
+            abstained = True
         else:
-            text = " ".join(d["text"] for d in docs)
+            selected = []
+            for document in docs:
+                sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", document["text"]) if s.strip()]
+                ranked = sorted(sentences, key=lambda sentence: (-len(query_terms & set(tokenize(sentence))), sentence))
+                if ranked:
+                    selected.append((document, ranked[0]))
+            text = " ".join(sentence for _, sentence in selected)
+            citations = [{"id": d["id"], "title": d["title"], "url": d["url"]} for d, _ in selected]
+            abstained = False
         return {
             **result,
             "answer": text[:1800],
-            "citations": [{"id": d["id"], "title": d["title"], "url": d["url"]} for d in docs],
+            "citations": citations,
+            "abstained": abstained,
+            "reason": reason if reason else "Không tìm thấy bằng chứng." if not docs else None,
             "notice": "Kết quả phục vụ học tập; prediction không thay thế chẩn đoán hoặc khuyến nghị đầu tư.",
         }
 

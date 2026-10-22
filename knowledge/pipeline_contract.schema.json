@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Vinhdiesel28/tieuluan3/knowledge/pipeline_contract.schema.json",
+  "title": "Chapter 5 Knowledge RAG request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["question"],
+  "properties": {
+    "question": {"type": "string", "minLength": 3, "maxLength": 500},
+    "method": {"enum": ["B0", "B1", "B2", "B3", "B4", "BM25", "LSA", "Hybrid", "KG", "GraphRAG"]},
+    "top_k": {"type": "integer", "minimum": 1, "maximum": 10, "default": 3},
+    "hops": {"type": "integer", "minimum": 0, "maximum": 3, "default": 2},
+    "domain": {"type": ["string", "null"], "enum": ["health", "finance", null]}
+  }
+}

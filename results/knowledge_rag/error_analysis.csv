@@ -1,0 +1,14 @@
+system,method,query_id,group,missing_gold,retrieved,error_type
+B0,BM25,Q10,multi_hop,"stock_ohlcv,stock_return","stock_dataset,apple_ir,stock_limits",incomplete_retrieval
+B0,BM25,Q11,multi_hop,health_dataset,"health_model,health_testing,health_prevention",incomplete_retrieval
+B1,LSA,Q09,multi_hop,health_overview,"health_prevention,apple_ir,health_symptoms",incomplete_retrieval
+B1,LSA,Q10,multi_hop,"stock_dataset,stock_ohlcv","apple_ir,stock_limits,stock_return",incomplete_retrieval
+B1,LSA,Q11,multi_hop,health_dataset,"health_model,health_testing,health_prevention",incomplete_retrieval
+B2,Hybrid,Q10,multi_hop,"stock_ohlcv,stock_return","apple_ir,stock_limits,stock_dataset",incomplete_retrieval
+B2,Hybrid,Q11,multi_hop,health_dataset,"health_model,health_testing,health_prevention",incomplete_retrieval
+B3,KG,Q06,paraphrase,health_testing,,incomplete_retrieval
+B3,KG,Q07,paraphrase,stock_baseline,,incomplete_retrieval
+B3,KG,Q08,paraphrase,stock_ohlcv,,incomplete_retrieval
+B3,KG,Q10,multi_hop,"stock_dataset,stock_return","apple_ir,stock_baseline,stock_ohlcv",incomplete_retrieval
+B4,GraphRAG,Q10,multi_hop,stock_return,"apple_ir,stock_dataset,stock_ohlcv",incomplete_retrieval
+B4,GraphRAG,Q11,multi_hop,health_dataset,"health_model,health_testing,health_prevention",incomplete_retrieval

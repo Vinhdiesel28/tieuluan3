@@ -220,83 +220,111 @@
     56
   ],
   [
-    "CHƯƠNG 5. KNOWLEDGE GRAPH VÀ RAG",
+    "CHƯƠNG 5. KNOWLEDGE BASE, KNOWLEDGE GRAPH VÀ RETRIEVAL-AUGMENTED GENERATION",
     57
   ],
   [
-    "5.1. Cơ sở Knowledge Graph",
+    "5.1. Mở đầu",
     58
   ],
   [
-    "5.2. Truy hồi BM25 và LSA",
+    "5.2. Knowledge Base và Knowledge Graph",
     59
   ],
   [
-    "5.3. GraphRAG và hợp hàm",
+    "5.3. Retrieval-Augmented Generation",
     60
   ],
   [
-    "5.4. Dataset của Chương 5",
+    "5.3.1. GraphRAG và các baseline B0–B4",
     61
   ],
   [
-    "5.5. Mã nguồn và cách chạy notebook",
+    "5.4. Case study KB/RAG cho bệnh đái tháo đường",
     62
   ],
   [
-    "5.6. Kết quả đánh giá truy hồi",
+    "5.5. Case study KB/RAG cho AAPL và báo cáo doanh nghiệp",
     63
   ],
   [
-    "5.7. Nhận xét, sai số và giới hạn",
+    "5.6. Hợp các hàm và contract dùng chung",
     64
   ],
   [
-    "CHƯƠNG 6. HỆ ĐA AGENT",
+    "5.6.1. Mã nguồn và cách chạy notebook",
     65
   ],
   [
-    "6.1. Router và các Agent chuyên trách",
+    "5.7. Cầu nối sang hệ đa tác tử",
     66
   ],
   [
-    "6.2. Hợp hàm và luồng điều phối",
+    "5.8. Đánh giá và tiểu kết",
     67
   ],
   [
-    "6.3. Kết quả kịch bản đa Agent",
+    "5.8.1. Ablation và phân tích lỗi",
     68
   ],
   [
-    "6.4. Tích hợp web và triển khai",
+    "5.8.2. Nhận xét, sai số và giới hạn",
     69
   ],
   [
-    "6.5. Kết luận phần cập nhật",
+    "5.9. Mẫu dữ liệu và đường dẫn hồ sơ",
     70
   ],
   [
-    "PHỤ LỤC A. TRIỂN KHAI - A.1. Kiến trúc ứng dụng",
+    "5.10. Triển khai ngắn",
     71
   ],
   [
-    "A.2. Hợp đồng đầu vào và giới hạn sử dụng",
+    "CHƯƠNG 6. HỆ ĐA AGENT",
     72
   ],
   [
-    "A.3. Kiểm chứng và trạng thái deploy",
+    "6.1. Router và các Agent chuyên trách",
     73
   ],
   [
-    "KẾT LUẬN",
+    "6.2. Hợp hàm và luồng điều phối",
     74
   ],
   [
-    "TÀI LIỆU THAM KHẢO",
+    "6.3. Kết quả kịch bản đa Agent",
     75
   ],
   [
-    "Tài liệu tham khảo (tiếp) và tái lập",
+    "6.4. Tích hợp web và triển khai",
     76
+  ],
+  [
+    "6.5. Kết luận phần cập nhật",
+    77
+  ],
+  [
+    "PHỤ LỤC A. TRIỂN KHAI - A.1. Kiến trúc ứng dụng",
+    78
+  ],
+  [
+    "A.2. Hợp đồng đầu vào và giới hạn sử dụng",
+    79
+  ],
+  [
+    "A.3. Kiểm chứng và trạng thái deploy",
+    80
+  ],
+  [
+    "KẾT LUẬN",
+    81
+  ],
+  [
+    "TÀI LIỆU THAM KHẢO",
+    82
+  ],
+  [
+    "Tài liệu tham khảo (tiếp) và tái lập",
+    83
   ]
 ]

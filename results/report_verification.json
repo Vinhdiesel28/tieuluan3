@@ -1,5 +1,5 @@
 {
-  "pages": 76,
+  "pages": 83,
   "introduction": [
     5,
     8
@@ -22,11 +22,11 @@
   ],
   "knowledge_rag": [
     57,
-    64
+    71
   ],
   "multi_agent": [
-    65,
-    70
+    72,
+    77
   ],
   "all_pages_rendered": true
 }

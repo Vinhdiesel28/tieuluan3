@@ -8,6 +8,7 @@ from scratch import forward,probabilities
 from architecture_inference import predict_arch
 from sequence_core import stock_features,STOCK_COLUMNS
 from multi_agent import CoordinatorAgent
+from knowledge_pipeline import validate_request
 app=Flask(__name__);app.config['MAX_CONTENT_LENGTH']=3*1024*1024
 AGENT=CoordinatorAgent()
 CAT=json.loads((ROOT/'web/bundle/catalog.json').read_text(encoding='utf-8'))
@@ -58,7 +59,7 @@ def custom(payload,key,meta):
 @app.get('/')
 def home():return render_template('index.html')
 @app.get('/health')
-def health():return jsonify(status='ok',models=len(WEIGHTS)+len(EXTRA),agents=7,knowledge_documents=len(AGENT.knowledge.engine.documents))
+def health():return jsonify(status='ok',models=len(WEIGHTS)+len(EXTRA),agents=7,knowledge_documents=len(AGENT.knowledge.engine.documents),rag_systems=5)
 @app.get('/api/catalog')
 def catalog():
     result={}
@@ -105,6 +106,13 @@ def agent():
         if not isinstance(question,str) or not question.strip():raise ValueError('Câu hỏi không được để trống.')
         if len(question)>2000:raise ValueError('Câu hỏi tối đa 2000 ký tự.')
         return jsonify(AGENT.run(question.strip()))
+    except (ValueError,TypeError,KeyError) as e:return jsonify(error=str(e)),400
+@app.post('/api/rag')
+def rag():
+    try:
+        payload=validate_request(request.get_json(silent=True))
+        question=payload.pop('question')
+        return jsonify(AGENT.knowledge.engine.answer(question,**payload))
     except (ValueError,TypeError,KeyError) as e:return jsonify(error=str(e)),400
 @app.errorhandler(413)
 def large(e):return jsonify(error='Yêu cầu quá lớn.'),413

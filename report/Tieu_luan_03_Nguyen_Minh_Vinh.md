@@ -105,7 +105,7 @@ Quy trình bắt đầu từ kiểm tra nguồn và cấu trúc raw data, sau đ
 
 Ở cấp kiểm chứng, gradient scratch được so với finite differences và hai autograd. Khi có checkpoint, model native được nạp lại và so output với NumPy. Metric được tính lại từ dự đoán đã lưu. Notebook được kiểm tra đủ execution count và không có error output; API được thử với mẫu và dữ liệu không hợp lệ. Các bước này không chứng minh mô hình phù hợp với mọi tình huống thực tế, nhưng tạo dấu vết kiểm tra cho phạm vi bài làm.
 
-Báo cáo gồm bốn chương chính theo yêu cầu. Sau phần lịch sử, mỗi chương thực nghiệm đi từ nền tảng, dataset, code tới kết quả và giới hạn. Phần triển khai và kết luận đặt sau Chương 4. Mã đầy đủ nằm trong notebook và src; báo cáo chọn các đoạn cốt lõi để người đọc hiểu dòng tính toán mà không phải lặp lại hàng trăm dòng tiện ích.
+Báo cáo gồm sáu chương chính. Chương 1 trình bày lịch sử AI; Chương 2–4 đi từ nền tảng, dataset, code tới kết quả của ML, CNN và RNN; Chương 5 xây dựng KB, KG và RAG; Chương 6 tổ chức hệ đa tác tử. Phần triển khai, kết luận và tài liệu tham khảo đặt sau sáu chương. Mã đầy đủ nằm trong notebook và src; báo cáo chọn các đoạn cốt lõi để người đọc hiểu dòng tính toán mà không phải lặp lại hàng trăm dòng tiện ích.
 
 | Giai đoạn | Đầu ra |
 | --- | --- |
@@ -1096,7 +1096,7 @@ Hướng phát triển tiếp theo gồm nhiều seed, walk- forward validation,
 | Phạm vi | Một bước; một seed; không online learning |
 
 
-# <span style="color:#c62828">CHƯƠNG 5. KNOWLEDGE GRAPH VÀ RAG</span>
+# <span style="color:#c62828">CHƯƠNG 5. KNOWLEDGE BASE, KNOWLEDGE GRAPH VÀ RETRIEVAL-AUGMENTED GENERATION</span>
 
 <span style="color:#c62828">PHẦN CẬP NHẬT MỚI CỦA TIỂU LUẬN 03.</span>
 
@@ -1112,9 +1112,16 @@ Hướng phát triển tiếp theo gồm nhiều seed, walk- forward validation,
 | Generator | Câu hỏi và bằng chứng | Câu trả lời có trích dẫn | Không trả lời ngoài dữ liệu |
 
 
-# <span style="color:#c62828">5.1. Cơ sở Knowledge Graph</span>
+# <span style="color:#c62828">5.1. Mở đầu</span>
 
-<span style="color:#c62828">Knowledge Graph biểu diễn tri thức bằng bộ ba (subject, predicate, object). Subject và object là thực thể; predicate mô tả quan hệ có hướng. Mỗi cạnh trong bài còn mang trường evidence trỏ về một tài liệu trong corpus. Ràng buộc này cho phép kiểm tra rằng quan hệ dùng để trả lời có nguồn, thay vì tạo một cạnh không thể truy vết.</span>
+<span style="color:#c62828">Knowledge Base (KB) là kho tri thức có cấu trúc dùng để lưu tài liệu, nguồn, ngày cập nhật và các phát biểu có thể truy vết. Knowledge Graph (KG) là một cách tổ chức KB dưới dạng mạng thực thể–quan hệ. Retrieval-Augmented Generation (RAG) dùng truy hồi để đưa bằng chứng từ KB/KG vào quá trình trả lời. Ba lớp này bổ sung cho mô hình dự đoán ở Chương 2–4: hệ thống vừa đưa ra kết quả, vừa chỉ ra dữ liệu nào hỗ trợ kết quả đó.</span>
+
+<span style="color:#c62828">Mục tiêu của chương là xây dựng pipeline có thể chạy lại trên hai miền đã dùng trong quyển: bệnh đái tháo đường và chuỗi AAPL. Bài so sánh năm cấu hình B 0–B 4, kiểm tra citation, khả năng từ chối câu ngoài phạm vi, phân tích lỗi và cung cấp API triển khai. Phạm vi là minh họa học thuật; câu trả lời sức khỏe không thay thế chẩn đoán và nội dung tài chính không phải khuyến nghị đầu tư.</span>
+
+
+# <span style="color:#c62828">5.2. Knowledge Base và Knowledge Graph</span>
+
+<span style="color:#c62828">Knowledge Base của bài gồm tài liệu, metadata nguồn và các bộ ba quan hệ. Mỗi tài liệu có id, domain, title, url, as_of và text. Knowledge Graph biểu diễn tri thức bằng bộ ba (subject, predicate, object). Subject và object là thực thể; predicate mô tả quan hệ có hướng. Mỗi cạnh còn mang trường evidence trỏ về một tài liệu trong corpus, nhờ đó quan hệ dùng để trả lời luôn có thể truy vết.</span>
 
 <span style="color:#c62828">Đồ thị được lưu dạng property graph trong JSON. Khi nạp dữ liệu, mã tạo danh sách kề hai chiều để phục vụ tìm kiếm. Với câu hỏi có thực thể khớp alias, BFS duyệt tối đa hai hop. Điểm một cạnh tại độ sâu d là 1/(d+1), vì quan hệ xa hơn thường ít trực tiếp hơn.</span>
 
@@ -1137,7 +1144,7 @@ while queue:
 ```
 
 
-# <span style="color:#c62828">5.2. Truy hồi BM25 và LSA</span>
+# <span style="color:#c62828">5.3. Retrieval-Augmented Generation</span>
 
 <span style="color:#c62828">BM 25 là phương pháp truy hồi từ vựng. Điểm tăng khi từ của câu hỏi xuất hiện nhiều trong tài liệu, nhưng được điều chỉnh theo độ dài tài liệu và độ hiếm IDF. Bài dùng k 1=1,5 và b=0,75. Ưu điểm là nhanh, dễ giải thích và phù hợp corpus nhỏ; nhược điểm là khó nối các cách diễn đạt khác nhau.</span>
 
@@ -1154,7 +1161,7 @@ score = cosine(dense_docs, query_tfidf @ projection)
 <span style="color:#c62828">Hai danh sách BM 25 và LSA được kết hợp bằng Reciprocal Rank Fusion: RRF(d)=Σ w/(60+rank). Phương pháp dùng thứ hạng thay cho thang điểm gốc nên tránh phải ép điểm BM 25, cosine và đồ thị về cùng đơn vị.</span>
 
 
-# <span style="color:#c62828">5.3. GraphRAG và hợp hàm</span>
+# <span style="color:#c62828">5.3.1. GraphRAG và các baseline B0–B4</span>
 
 <span style="color:#c62828">GraphRAG trong bài là pipeline xác định, không gọi mô hình ngôn ngữ lớn. Hệ thống tính ba ranking BM 25, LSA và KG; hợp nhất bằng RRF với trọng số lần lượt 1,0; 0,7; 1,2; lấy top-3; rồi ghép các đoạn bằng chứng và danh sách URL. Cách làm này đủ để đánh giá truy hồi, dễ chạy trên máy cá nhân và tránh phát sinh câu không có trong nguồn.</span>
 
@@ -1178,24 +1185,62 @@ answer = compose_notice(compose_citations(documents))
 | GraphRAG | Ba ranking | Kết hợp nguồn và quan hệ | Không mặc nhiên tốt nhất |
 
 
-# <span style="color:#c62828">5.4. Dataset của Chương 5</span>
+# <span style="color:#c62828">5.4. Case study KB/RAG cho bệnh đái tháo đường</span>
 
-<span style="color:#c62828">Hai CSV được chọn từ chính các chương cũ để quyển có tính liên tục. Diabetes cung cấp bối cảnh sức khỏe cho MLP và kho tri thức; AAPL cung cấp chuỗi OHLCV cho RNN và miền tài chính. Corpus không chứa thông tin cá nhân, không lấy mẫu dự đoán làm chẩn đoán hay khuyến nghị đầu tư.</span>
+<span style="color:#c62828">Case study thứ nhất dùng lại CDC Diabetes để nối mô hình phân loại ở Chương 2 với lớp tri thức. CSV cung cấp 21 biến khảo sát và nhãn Diabetes_012; KB sức khỏe gồm sáu tài liệu từ WHO, CDC, NIDDK và metadata của bài. Graph liên kết các khái niệm như diabetes, blood glucose, BMI, physical activity và risk factor. Hệ thống trả đoạn bằng chứng và URL, không suy diễn một hồ sơ thành chẩn đoán y khoa.</span>
 
-| Dataset | Kích cỡ | Output / nhãn | Nguồn và vai trò |
+| Thành phần | Kích cỡ | Output / nhãn | Nguồn và vai trò |
 | --- | --- | --- | --- |
 | CDC Diabetes | 253.680 × 22 | Diabetes_012; bài gộp 1/2 thành dương | BRFSS 2015; dữ liệu bảng sức khỏe |
-| AAPL 2015–2025 | 2.766 × 7 | Close phiên kế tiếp | OHLCV; chuỗi tài chính |
-| Knowledge corpus | 12 tài liệu | Đoạn bằng chứng và URL | WHO, CDC, NIDDK, Apple và metadata bài |
-| Knowledge graph | 23 triples | subject–predicate–object | Evidence liên kết corpus |
-| Retrieval benchmark | 15 câu | Gold document ids | Direct, paraphrase, multi-hop, OOD |
+| Health KB | 6 tài liệu | Đoạn bằng chứng và URL | WHO, CDC, NIDDK và metadata bài |
+| Health graph | Các triple miền health | subject–predicate–object | Evidence liên kết tài liệu sức khỏe |
+| Health queries | Direct, paraphrase, multi-hop, OOD | Gold document ids | Đánh giá truy hồi và từ chối |
 
-<span style="color:#c62828">Mỗi tài liệu ghi id, domain, title, url, as_of và text. Benchmark được tách theo loại câu hỏi để tránh đánh giá chỉ bằng các câu trùng nguyên văn. Câu out-of-scope kiểm tra khả năng không đưa bằng chứng sai; đây là một phần của chất lượng hệ thống chứ không phải lỗi cần che giấu.</span>
+<span style="color:#c62828">Ví dụ đầu vào là câu hỏi về mối liên hệ giữa vận động, BMI và nguy cơ tiểu đường. Pipeline chuẩn hóa câu hỏi, tìm tài liệu liên quan, mở rộng thực thể trên graph rồi trả câu dựa trên bằng chứng. Với câu yêu cầu kê đơn hoặc khẳng định chẩn đoán, Guard thêm cảnh báo và chuyển trạng thái cần người có chuyên môn xem xét.</span>
 
 
-# <span style="color:#c62828">5.5. Mã nguồn và cách chạy notebook</span>
+# <span style="color:#c62828">5.5. Case study KB/RAG cho AAPL và báo cáo doanh nghiệp</span>
 
-<span style="color:#c62828">Notebook 07 giải thích lần lượt khâu nạp corpus, dựng BM 25/LSA, dựng graph, GraphRAG, truy vấn minh họa và benchmark. Các cell đã có output, có thể Restart Kernel rồi Run All. Mã nghiệp vụ được đặt trong src/knowledge_rag.py để notebook, web và script đánh giá dùng cùng một implementation.</span>
+<span style="color:#c62828">Case study thứ hai dùng AAPL 2015–2025 để nối mô hình RNN ở Chương 4 với tri thức tài chính. CSV gồm Date, Open, High, Low, Close, Adj Close và Volume. KB tài chính gồm sáu tài liệu về dữ liệu OHLCV, cách tạo window, dự báo one-step, giới hạn của mô hình và nguồn Apple Investor Relations. KG liên kết AAPL, market data, RNN, forecast và investment risk.</span>
+
+| Thành phần | Kích cỡ | Output | Vai trò |
+| --- | --- | --- | --- |
+| AAPL 2015–2025 | 2.766 × 7 | Close phiên kế tiếp | Chuỗi thời gian cho RNN |
+| Finance KB | 6 tài liệu | Đoạn bằng chứng và URL | Giải thích dữ liệu, mô hình và giới hạn |
+| Finance graph | Các triple miền finance | Đường đi 1–2 hop | Nối AAPL – OHLCV – RNN –risk |
+| Finance queries | Direct, paraphrase, multi-hop, OOD | Gold document ids | Đánh giá truy hồi |
+
+<span style="color:#c62828">Câu trả lời có thể giải thích dữ liệu nào được dùng để dự báo và vì sao đầu ra chỉ là ước lượng một bước. Nó không đưa lệnh mua/bán. Đây là khác biệt có chủ ý so với bài mẫu dùng FinQA: bài này giữ AAPL để thống nhất dataset, mô hình và kết quả đã trình bày ở Chương 4.</span>
+
+
+# <span style="color:#c62828">5.6. Hợp các hàm và contract dùng chung</span>
+
+<span style="color:#c62828">Phần code được bổ sung sau khi đối chiếu bài mẫu gồm kiểm tra schema, phát hiện ID trùng, URL không hợp lệ, dangling evidence và gold document không tồn tại. Pipeline cắt tài liệu thành cửa sổ 45 token, overlap 8; mỗi chunk giữ document_id, URL, ngày nguồn, vị trí token và SHA-256.</span>
+
+| Artifact | Số lượng / cấu hình | Kiểm soát |
+| --- | --- | --- |
+| Documents | 12 | ID duy nhất, domain và HTTPS URL |
+| Triples | 23 | Evidence phải tồn tại trong corpus |
+| Queries | 15 | Gold ID và group hợp lệ |
+| Chunks | 23 | 45 token, overlap 8, hash từng chunk |
+| Snapshot | af 28 a 6 ee 38 b 62957… | Hash corpus, graph, benchmark và chunk |
+
+```python
+quality = validate_knowledge_base(corpus, triples, queries)
+chunks = chunk_documents(corpus, max_tokens=45, overlap=8)
+manifest = {
+    "schema_version": "1.0.0",
+    "quality": quality,
+    "files": hash_every_input_and_chunk_file(),
+}
+```
+
+<span style="color:#c62828">Các hash không chứng minh nguồn bên ngoài đúng, nhưng xác định chính xác snapshot nào đã sinh bảng kết quả. File pipeline_contract.schema.json và hàm validate_request giới hạn question, method, top_k, hops và domain; trường lạ bị từ chối.</span>
+
+
+# <span style="color:#c62828">5.6.1. Mã nguồn và cách chạy notebook</span>
+
+<span style="color:#c62828">Notebook 07 hiện có 20 code cell, giải thích từ ingestion đến deployment. Các cell đã có output, có thể Restart Kernel rồi Run All. Mã nghiệp vụ nằm trong src/knowledge_pipeline.py và src/knowledge_rag.py để notebook, web và script đánh giá dùng cùng implementation.</span>
 
 ```python
 from src.knowledge_rag import KnowledgeRAG
@@ -1212,22 +1257,50 @@ for source in result["citations"]:
 <span style="color:#c62828">Việc giữ nguồn trong cấu trúc answer giúp giao diện hiển thị link thật thay vì chỉ in một đoạn văn. Cùng câu hỏi và cùng corpus cho kết quả xác định, thuận lợi cho chấm bài và phân tích lỗi.</span>
 
 
-# <span style="color:#c62828">5.6. Kết quả đánh giá truy hồi</span>
+# <span style="color:#c62828">5.7. Cầu nối sang hệ đa tác tử</span>
 
-| Method | Recall @3 | MRR@3 | Complete@3 | OOD empty | ms |
-| --- | --- | --- | --- | --- | --- |
-| BM 25 | 0.9167 | 0.9583 | 0.8333 | 0.0000 | 0.718 |
-| LSA | 0.8958 | 0.9583 | 0.7500 | 0.0000 | 0.763 |
-| KG | 0.7083 | 0.5972 | 0.6667 | 0.6667 | 0.840 |
-| Hybrid | 0.9375 | 0.9583 | 0.8333 | 0.0000 | 0.788 |
-| GraphRAG | 0.9167 | 0.9583 | 0.8333 | 0.0000 | 0.791 |
+<span style="color:#c62828">Pipeline Chương 5 được đóng gói thành Knowledge Age nt để Chương 6 có thể gọi như một công cụ. Router chỉ chọn miền và tuyến xử lý; Knowledge Age nt nhận request đã kiểm tra, chạy B 4 GraphRAG và trả answer, citations, graph paths, request hash cùng corpus hash. Guard Age nt sau đó kiểm tra số citation và các từ khóa rủi ro trước khi Coordinator tổng hợp.</span>
+
+| Bước | Contract đầu vào | Contract đầu ra |
+| --- | --- | --- |
+| Router | question | health / finance / knowledge / model |
+| Knowledge Age nt | question, domain, top_k, hops | answer, citations, paths, hashes |
+| Guard Age nt | question, evidence count | supported / needs_human và lý do |
+| Coordinator | routes, evidence, review | final answer và trace |
+
+<span style="color:#c62828">Cách nối bằng contract giúp notebook, web API và hệ đa Age nt dùng cùng một implementation. Trace chỉ mô tả luồng phần mềm và bằng chứng được dùng; nó không được diễn giải thành lời giải thích nhân quả của mô hình.</span>
+
+
+# <span style="color:#c62828">5.8. Đánh giá và tiểu kết</span>
+
+| System | P@3 | R@3 | MRR | nDCG | OOD | p 95 ms |
+| --- | --- | --- | --- | --- | --- | --- |
+| B 0 BM 25 | 0.4167 | 0.9167 | 0.9583 | 0.9175 | 1.0000 | 1.908 |
+| B 1 LSA | 0.3889 | 0.8750 | 0.9167 | 0.8493 | 1.0000 | 2.207 |
+| B 2 Hybrid | 0.4167 | 0.9167 | 0.9583 | 0.9056 | 1.0000 | 1.724 |
+| B 3 KG | 0.3611 | 0.7083 | 0.5972 | 0.6112 | 1.0000 | 1.720 |
+| B 4 GraphRAG | 0.4444 | 0.9375 | 0.9167 | 0.9063 | 1.0000 | 2.298 |
 
 ![So sánh năm phương pháp trên benchmark 15 câu.](../results/knowledge_rag/retrieval_comparison.png)
 
-<span style="color:#c62828">Hybrid đạt Recall @3 cao nhất 0,9375. GraphRAG đạt 0,9167, bằng BM 25 về Recall và không vượt Hybrid trong corpus nhỏ này. Kết quả được giữ nguyên vì mục tiêu là báo cáo đúng phép đo, không ép phương pháp mới phải thắng. KG có OOD empty rate 0,6667, tốt hơn các retriever luôn tìm thấy một đoạn, nhưng Recall thấp hơn.</span>
+<span style="color:#c62828">B 4 GraphRAG đạt Recall @3 cao nhất 0,9375; B 0 và B 2 đạt 0,9167. B 0/B 2 có MRR cao hơn B 4, cho thấy thêm graph cải thiện độ phủ nhưng không luôn đưa tài liệu đúng lên hạng đầu. Cả năm hệ thống đạt OOD abstention 1,0 sau lớp guardrail; đây là kết quả trên ba câu OOD đã định nghĩa, không phải chứng nhận an toàn tổng quát.</span>
 
 
-# <span style="color:#c62828">5.7. Nhận xét, sai số và giới hạn</span>
+# <span style="color:#c62828">5.8.1. Ablation và phân tích lỗi</span>
+
+| Graph hops | Top-k | Recall @3 | MRR@3 | nDCG@3 |
+| --- | --- | --- | --- | --- |
+| 0 | 3 | 0.9167 | 0.9583 | 0.9056 |
+| 1 | 3 | 0.9375 | 0.9167 | 0.9063 |
+| 2 | 3 | 0.9375 | 0.9167 | 0.9063 |
+| 3 | 3 | 0.9375 | 0.8750 | 0.8755 |
+
+<span style="color:#c62828">Ablation thay số hop 0–3 và top-k 1/3/5, giữ nguyên corpus và query. File prediction có 75 dòng; error_analysis.csv có 13 trường hợp thiếu ít nhất một gold document. Mỗi dòng giữ query ID, retrieved IDs, score, citation, latency, request hash và corpus hash để có thể tái tính metric.</span>
+
+<span style="color:#c62828">Với corpus nhỏ, thay đổi hop có thể đưa thêm evidence đúng hoặc đẩy một tài liệu từ vựng khỏi top-k. Vì vậy báo cáo đồng thời Recall, MRR và nDCG; chỉ dùng một metric có thể che khuất sự thay đổi thứ hạng.</span>
+
+
+# <span style="color:#c62828">5.8.2. Nhận xét, sai số và giới hạn</span>
 
 <span style="color:#c62828">Sai số thứ nhất đến từ alias: graph chỉ khởi động khi câu hỏi chứa tên thực thể đã biết. Sai số thứ hai đến từ corpus nhỏ, khiến SVD có ít ngữ cảnh và một tài liệu có thể chứa nhiều khái niệm. Sai số thứ ba là phép ghép bằng chứng: RRF cải thiện độ phủ nhưng tài liệu được thêm từ graph có thể làm mất một tài liệu từ vựng ở top-3.</span>
 
@@ -1239,6 +1312,42 @@ for source in result["citations"]:
 | Quan hệ sai | Mỗi triple bắt buộc evidence id | Kiểm duyệt graph và versioning |
 | Nguồn lỗi thời | Có as_of và URL | Lịch làm mới và snapshot |
 | Diễn giải quá mức | Guard notice sức khỏe/tài chính | Human review theo rủi ro |
+
+
+# <span style="color:#c62828">5.9. Mẫu dữ liệu và đường dẫn hồ sơ</span>
+
+<span style="color:#c62828">Toàn bộ hồ sơ thực nghiệm được lưu kèm repository để có thể đối chiếu bảng trong báo cáo. CSV gốc phục vụ mô hình dự đoán; corpus, graph và benchmark phục vụ RAG; các artifact kết quả giữ dự đoán theo từng câu, ablation, lỗi và manifest hash.</span>
+
+| Hồ sơ | Đường dẫn | Nội dung |
+| --- | --- | --- |
+| Dữ liệu Diabetes | data/diabetes.csv | 253.680 dòng dữ liệu bảng |
+| Dữ liệu AAPL | data/ AAPL _2015_2025.csv | 2.766 phiên OHLCV |
+| Corpus / KG / benchmark | knowledge/*.json | Tài liệu, triple và gold query |
+| Pipeline artifacts | results/knowledge_rag/ | Predictions, ablation, errors, chunks, manifest |
+| Notebook | notebooks/07_knowledge_graph_rag.ipynb | 20 code cell đã chạy và có output |
+
+```python
+document = {"id": "...", "domain": "health|finance",
+            "title": "...", "url": "https://...", "as_of": "...", "text": "..."}
+triple = {"subject": "...", "predicate": "...", "object": "...",
+          "evidence": "document_id"}
+query = {"id": "...", "question": "...", "gold": ["document_id"],
+         "group": "direct|paraphrase|multi_hop|ood"}
+```
+
+
+# <span style="color:#c62828">5.10. Triển khai ngắn</span>
+
+<span style="color:#c62828">Web bổ sung POST /api/rag bên cạnh POST /api/agent. API RAG nhận question, B 0–B 4 hoặc tên phương pháp, top_k, hops và domain. Response trả ranking, graph paths, grounded answer, citations, abstention, reason, request SHA-256 và corpus SHA-256.</span>
+
+```python
+payload = validate_request(request.get_json())
+question = payload.pop("question")
+result = engine.answer(question, **payload)
+return jsonify(result)
+```
+
+<span style="color:#c62828">Bộ triển khai không nhận đường dẫn file, pickle hoặc tool tùy ý từ người dùng. Corpus và graph được đóng gói trong repository; inference chỉ dùng NumPy và JSON nên phù hợp Render Free. Câu hỏi rỗng, trường lạ, top-k/hops vượt giới hạn hoặc domain sai nhận HTTP 400.</span>
 
 
 # <span style="color:#c62828">CHƯƠNG 6. HỆ ĐA AGENT</span>
@@ -1317,7 +1426,7 @@ def agent_answer():
 
 <span style="color:#c62828">Chương 5 và 6 đã nối sáu bài toán dự đoán của quyển cũ với lớp tri thức và điều phối. Hệ thống mới dùng 12 tài liệu, 23 triples, benchmark 15 câu, năm phương pháp truy hồi và bảy agent. Hai notebook 07–08 giải thích code và đã lưu output.</span>
 
-<span style="color:#c62828">Điểm chính của thực nghiệm là tính trung thực: Hybrid có Recall @3 cao nhất, GraphRAG không được tuyên bố vượt trội khi số liệu không ủng hộ. Knowledge Graph vẫn hữu ích để biểu diễn đường đi và hỗ trợ từ chối ngoài phạm vi. Multi- Age nt cung cấp trace và ranh giới trách nhiệm, nhưng chưa thay thế đánh giá chuyên gia.</span>
+<span style="color:#c62828">Điểm chính của thực nghiệm là báo cáo đồng thời độ phủ và thứ hạng: B 4 có Recall @3 cao nhất nhưng B 0/B 2 có MRR cao hơn. Knowledge Graph hữu ích để biểu diễn đường đi và hỗ trợ câu nhiều bước; nó không mặc nhiên thắng mọi metric. Multi- Age nt cung cấp trace và ranh giới trách nhiệm, nhưng chưa thay thế đánh giá chuyên gia.</span>
 
 | Sản phẩm mới | Vị trí |
 | --- | --- |
@@ -1373,7 +1482,7 @@ Score softmax chưa được calibration; giá trị cao không bảo đảm d�
 | Model native /portable | 38 checkpoint được xác minh |
 | API hợp lệ | 282 yêu cầu thành công |
 | API lỗi | 9 trường hợp trả 400 |
-| Notebook | 6 notebook đủ output, không cell lỗi |
+| Notebook | 8 notebook có output; Notebook 07 có 20 code cell, không cell lỗi |
 
 Kiểm thử metric tính lại từ dự đoán đã lưu vàso với JSON của từng model. Checkpoint được nạp lại, đối chiếu cùng input để tránh tình huống báo cáo dùng trọng số khác web. Các split được kiểm tra không giao nhau; dữ liệu chuỗi còn kiểm tra thứ tựthời gian train trước validation trước test.
 
@@ -1386,20 +1495,22 @@ Các bước tái lập nằm trong README và docs/DEPLOY.md. Raw data được
 
 # KẾT LUẬN
 
-Tiểu luận đã kết nối lịch sửAI với ba nhóm mô hình học từ dữ liệu và một ứng dụng phục vụ checkpoint. Phần lịch sử làm rõ vai trò của cách đặt câu hỏi, biểu diễn, dữ liệu và compute. Phần thực nghiệm cho thấy công thức toán học có thể chuyển thành code và được kiểm chứng bằng các phép đối chiếu cụ thể.
+Tiểu luận đã kết nối lịch sử AI với ba nhóm mô hình học từ dữ liệu, một lớp tri thức có truy hồi và một hệ đa tác tử. Phần lịch sử làm rõ vai trò của cách đặt câu hỏi, biểu diễn, dữ liệu và compute. Phần thực nghiệm cho thấy công thức toán học có thể chuyển thành code và được kiểm chứng bằng các phép đối chiếu cụ thể.
 
-Sáu dataset được mô tả theo nguồn, quy mô, cách hình thành mẫu, phân bố và giới hạn. Mười tám implementation được train độc lập từ đầu: MLP, CNN vàVanilla RNN, mỗi loại trên hai dataset bằngscratch/ Keras / PyTorch. Bốn mô hình cổ điển bổ sung cho chương ML. Thực nghiệm kiến trúc còn có tám CNN và tám RNN với Adam, cùng split và số epoch; web phục vụ đủ 38 checkpoint. Scratchthực hiệnđạo hàm và SGD thật; finite differencescùng hai autogradcung cấp bằng chứng về tính nhất quán của phần cài đặt.
+Sáu dataset được mô tả theo nguồn, quy mô, cách hình thành mẫu, phân bố và giới hạn. Mười tám implementation được train độc lập từ đầu: MLP, CNN và Vanilla RNN, mỗi loại trên hai dataset bằng scratch/ Keras / PyTorch. Bốn mô hình cổ điển bổ sung cho chương ML. Thực nghiệm kiến trúc còn có tám CNN và tám RNN với Adam, cùng split và số epoch; web phục vụ đủ 38 checkpoint. Scratch thực hiện đạo hàm và SGD thật; finite differences cùng hai autograd cung cấp bằng chứng về tính nhất quán của phần cài đặt.
 
-Kết quả gần nhau giữa framework phù hợp với thiết kế cùngkhởi tạo và cùng phép cập nhật. Điều này không cónghĩa cả ba môi trườngluôn tương đương về hiệu quả tính toán, và cũng khôngchứng minh mô hình đủ tốt trong mọi miền. Baseline, confusion matrixvàví dụ lỗi giúp đặt chất lượng dự đoán trong bối cảnh của từng dataset.
+Chương 5 tổ chức 12 tài liệu và 23 quan hệ thành KB/KG, so sánh năm hệ truy hồi B 0–B 4 bằng Precision, Recall, MRR, nDCG, citation và abstention. Chương 6 dùng bảy Age nt, trace và Guard để nối truy hồi tri thức với kết quả ML/ CNN / RNN. Các phần mới giữ nguyên dataset Diabetes và AAPL nhằm bảo đảm một mạch dữ liệu xuyên suốt toàn quyển.
 
-Web cho phép thửsáu bài toán bằng model đã train và đầu vào cụ thể. Mộtphần quan trọng của sản phẩm là lưu đúng scaler, target transformvà checkpoint, thay vì chỉ dựng giao diện. Hướng nghiên cứu sau cầnnhiều seed, đánh giá ngoài miền, calibration vàmonitoring; những nội dung chưa làm được nêu rõ để tránh diễn giải quá mức phạm vi tiểu luận.
+Web cho phép thử sáu bài toán bằng model đã train, đồng thời cung cấp API RAG và Age nt. Một phần quan trọng của sản phẩm là lưu đúng scaler, target transform, checkpoint, corpus hash và citation. Hướng nghiên cứu sau cần nhiều seed, đánh giá ngoài miền, calibration, monitoring và mô hình sinh có kiểm soát; những nội dung chưa làm được nêu rõ để tránh diễn giải quá mức phạm vi tiểu luận.
 
-| Chương | Dataset | Sản phẩm chính |
+| Chương | Dataset / tri thức | Sản phẩm chính |
 | --- | --- | --- |
 | ML | CDC, giá nhà | MLP × 3 cài đặt + baseline |
 | CNN | MNIST, EuroSAT | Scratch + bốn kiến trúc so sánh |
 | RNN | AAPL, khách hàng | BPTT + RNN /LSTM/GRU/BiLSTM |
-| Deploy | Sáu bài toán | Flask + trọng số thật + Render YAML |
+| KB/KG/RAG | Diabetes, AAPL, 12 tài liệu | B 0–B 4, citation, ablation, error analysis |
+| Multi- Age nt | Kết quả sáu bài toán và KB/KG | 7 Age nt, Guard, trace, API |
+| Deploy | Toàn bộ mô hình và tri thức | Flask + trọng số thật + Render YAML |
 
 <span style="color:#c62828">Cập nhật Tiểu luận 03 bổ sung Knowledge Graph, RAG và hệ đa Age nt. Hai chương mới dùng lại CDC Diabetes và AAPL để bảo đảm nhất quán dữ liệu; corpus 12 tài liệu và 23 triples chỉ cung cấp bằng chứng. Web có thêm API Age nt, trace, citation và Guard review.</span>
 
@@ -1471,5 +1582,7 @@ Web cho phép thửsáu bài toán bằng model đã train và đầu vào cụ 
 <span style="color:#c62828">[28] Apple Investor Relations. https://investor.apple.com/investor-relations/</span>
 
 <span style="color:#c62828">[29] Lê Thành Thông. tieuluan 03_CT_10_thonglt.pdf. Tài liệu mẫu do người dùng cung cấp; tham khảo cấu trúc Chương 5, không sao chép dữ liệu hoặc kết quả.</span>
+
+<span style="color:#c62828">[30] Triệu Tuấn Anh. tieuluan 03_CT_08_anhtt.pdf và repository ISD_Assignment 01. Dùng để đối chiếu độ đầy đủ của pipeline Chương 5; không sao chép dataset, prediction hoặc metric.</span>
 
 Ngày đối chiếu nguồn: 08/10/2026. Các bảng số liệu và hình thực nghiệm được tạo từ lần chạy trong repository này. Không có mã gốc RNN /ML/ CNN của giảng viên được chỉ định làm bản bắt buộc cho tiểu luận; các đoạn trình bày là code tự triển khai hoặc API thư viện được dẫn nguồn.

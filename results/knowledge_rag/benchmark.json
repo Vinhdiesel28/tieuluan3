@@ -1,1002 +1,116 @@
 {
+  "manifest": {
+    "schema_version": "1.0.0",
+    "chapter": 5,
+    "systems": {
+      "B0": "BM25",
+      "B1": "LSA",
+      "B2": "Hybrid",
+      "B3": "KG",
+      "B4": "GraphRAG"
+    },
+    "quality": {
+      "documents": 12,
+      "triples": 23,
+      "queries": 15,
+      "domains": {
+        "finance": 6,
+        "health": 6
+      },
+      "document_hash": "af28a6ee38b629577161bd10bf86da7d50979a1776415aa93c81283f019758b2",
+      "graph_hash": "af4a797c7dae393b9a337d0d842e482eaaddd54233cbc0f31c7da25e1ded3047",
+      "benchmark_hash": "ae3c41b07ac0a30c1742149cb6aec9800b915e08701bebec0b6129e92b37bbfa",
+      "status": "valid"
+    },
+    "chunking": {
+      "max_tokens": 45,
+      "overlap": 8,
+      "chunks": 23
+    },
+    "files": {
+      "corpus": {
+        "bytes": 6487,
+        "sha256": "9c44261d165575692834ea815e1c1f5553b6625a3dd8e1f5443d487422cc885f"
+      },
+      "graph": {
+        "bytes": 2542,
+        "sha256": "2aefdee3ec64148adf9293e30a866fd2378a7e74536f7478fe193c635a1d81cd"
+      },
+      "benchmark": {
+        "bytes": 2204,
+        "sha256": "1d0a2b1214d2a6ea8b5a97f303aa054f8e6429241690802b6b9e6e3914b5a344"
+      },
+      "chunks": {
+        "bytes": 12391,
+        "sha256": "9e36a4106c432f386e6d901e12874993011a1e6f87d73ca275cac7b520616e28"
+      }
+    }
+  },
   "documents": 12,
   "triples": 23,
   "queries": 15,
   "rows": [
     {
+      "System": "B0",
       "Method": "BM25",
+      "Precision@3": 0.4166666666666667,
       "Recall@3": 0.9166666666666666,
       "MRR@3": 0.9583333333333334,
+      "nDCG@3": 0.9174531319437947,
       "Complete@3": 0.8333333333333334,
-      "OOD_EmptyRate": 0.0,
-      "Latency_ms": 0.7184999994933605
+      "OOD_AbstainRate": 1.0,
+      "Latency_p50_ms": 1.5002998989075422,
+      "Latency_p95_ms": 1.9082999555394053
     },
     {
+      "System": "B1",
       "Method": "LSA",
-      "Recall@3": 0.8958333333333334,
-      "MRR@3": 0.9583333333333334,
+      "Precision@3": 0.3888888888888889,
+      "Recall@3": 0.875,
+      "MRR@3": 0.9166666666666666,
+      "nDCG@3": 0.8493393318089972,
       "Complete@3": 0.75,
-      "OOD_EmptyRate": 0.0,
-      "Latency_ms": 0.7634999928995967
+      "OOD_AbstainRate": 1.0,
+      "Latency_p50_ms": 1.5042999293655157,
+      "Latency_p95_ms": 2.206790039781481
     },
     {
+      "System": "B2",
+      "Method": "Hybrid",
+      "Precision@3": 0.4166666666666667,
+      "Recall@3": 0.9166666666666666,
+      "MRR@3": 0.9583333333333334,
+      "nDCG@3": 0.9056429853766031,
+      "Complete@3": 0.8333333333333334,
+      "OOD_AbstainRate": 1.0,
+      "Latency_p50_ms": 1.3580999802798033,
+      "Latency_p95_ms": 1.7239799839444454
+    },
+    {
+      "System": "B3",
       "Method": "KG",
+      "Precision@3": 0.3611111111111111,
       "Recall@3": 0.7083333333333334,
       "MRR@3": 0.5972222222222222,
+      "nDCG@3": 0.6112373202171327,
       "Complete@3": 0.6666666666666666,
-      "OOD_EmptyRate": 0.6666666666666666,
-      "Latency_ms": 0.840499997138977
+      "OOD_AbstainRate": 1.0,
+      "Latency_p50_ms": 1.1757999891415238,
+      "Latency_p95_ms": 1.7204300616867834
     },
     {
-      "Method": "Hybrid",
-      "Recall@3": 0.9375,
-      "MRR@3": 0.9583333333333334,
-      "Complete@3": 0.8333333333333334,
-      "OOD_EmptyRate": 0.0,
-      "Latency_ms": 0.7875999435782433
-    },
-    {
+      "System": "B4",
       "Method": "GraphRAG",
-      "Recall@3": 0.9166666666666666,
-      "MRR@3": 0.9583333333333334,
+      "Precision@3": 0.4444444444444444,
+      "Recall@3": 0.9375,
+      "MRR@3": 0.9166666666666666,
+      "nDCG@3": 0.9062505583256978,
       "Complete@3": 0.8333333333333334,
-      "OOD_EmptyRate": 0.0,
-      "Latency_ms": 0.7911999709904194
+      "OOD_AbstainRate": 1.0,
+      "Latency_p50_ms": 1.884699915535748,
+      "Latency_p95_ms": 2.2979100001975894
     }
   ],
-  "detail": [
-    {
-      "method": "BM25",
-      "id": "Q01",
-      "group": "direct",
-      "gold": [
-        "health_symptoms"
-      ],
-      "retrieved": [
-        "health_symptoms",
-        "health_overview",
-        "health_testing"
-      ]
-    },
-    {
-      "method": "BM25",
-      "id": "Q02",
-      "group": "direct",
-      "gold": [
-        "health_testing"
-      ],
-      "retrieved": [
-        "health_testing",
-        "health_dataset",
-        "health_overview"
-      ]
-    },
-    {
-      "method": "BM25",
-      "id": "Q03",
-      "group": "direct",
-      "gold": [
-        "health_dataset"
-      ],
-      "retrieved": [
-        "health_dataset",
-        "health_symptoms",
-        "stock_dataset"
-      ]
-    },
-    {
-      "method": "BM25",
-      "id": "Q04",
-      "group": "direct",
-      "gold": [
-        "stock_dataset"
-      ],
-      "retrieved": [
-        "stock_dataset",
-        "health_symptoms",
-        "stock_return"
-      ]
-    },
-    {
-      "method": "BM25",
-      "id": "Q05",
-      "group": "direct",
-      "gold": [
-        "apple_ir"
-      ],
-      "retrieved": [
-        "apple_ir",
-        "stock_limits",
-        "stock_baseline"
-      ]
-    },
-    {
-      "method": "BM25",
-      "id": "Q06",
-      "group": "paraphrase",
-      "gold": [
-        "health_testing"
-      ],
-      "retrieved": [
-        "health_testing",
-        "health_overview",
-        "stock_return"
-      ]
-    },
-    {
-      "method": "BM25",
-      "id": "Q07",
-      "group": "paraphrase",
-      "gold": [
-        "stock_baseline"
-      ],
-      "retrieved": [
-        "stock_baseline",
-        "stock_ohlcv",
-        "stock_return"
-      ]
-    },
-    {
-      "method": "BM25",
-      "id": "Q08",
-      "group": "paraphrase",
-      "gold": [
-        "stock_ohlcv"
-      ],
-      "retrieved": [
-        "stock_baseline",
-        "stock_ohlcv",
-        "stock_dataset"
-      ]
-    },
-    {
-      "method": "BM25",
-      "id": "Q09",
-      "group": "multi_hop",
-      "gold": [
-        "health_prevention",
-        "health_overview"
-      ],
-      "retrieved": [
-        "health_prevention",
-        "health_overview",
-        "health_symptoms"
-      ]
-    },
-    {
-      "method": "BM25",
-      "id": "Q10",
-      "group": "multi_hop",
-      "gold": [
-        "stock_dataset",
-        "stock_ohlcv",
-        "stock_return",
-        "apple_ir"
-      ],
-      "retrieved": [
-        "stock_dataset",
-        "apple_ir",
-        "stock_baseline"
-      ]
-    },
-    {
-      "method": "BM25",
-      "id": "Q11",
-      "group": "multi_hop",
-      "gold": [
-        "health_model",
-        "health_dataset"
-      ],
-      "retrieved": [
-        "health_model",
-        "health_prevention",
-        "health_testing"
-      ]
-    },
-    {
-      "method": "BM25",
-      "id": "Q12",
-      "group": "multi_hop",
-      "gold": [
-        "stock_baseline",
-        "stock_limits"
-      ],
-      "retrieved": [
-        "stock_limits",
-        "stock_baseline",
-        "stock_dataset"
-      ]
-    },
-    {
-      "method": "BM25",
-      "id": "Q13",
-      "group": "out_of_scope",
-      "gold": [],
-      "retrieved": [
-        "stock_baseline",
-        "health_symptoms",
-        "stock_limits"
-      ]
-    },
-    {
-      "method": "BM25",
-      "id": "Q14",
-      "group": "out_of_scope",
-      "gold": [],
-      "retrieved": [
-        "health_model",
-        "health_prevention",
-        "health_dataset"
-      ]
-    },
-    {
-      "method": "BM25",
-      "id": "Q15",
-      "group": "out_of_scope",
-      "gold": [],
-      "retrieved": [
-        "apple_ir",
-        "stock_baseline",
-        "health_model"
-      ]
-    },
-    {
-      "method": "LSA",
-      "id": "Q01",
-      "group": "direct",
-      "gold": [
-        "health_symptoms"
-      ],
-      "retrieved": [
-        "health_symptoms",
-        "health_overview",
-        "health_dataset"
-      ]
-    },
-    {
-      "method": "LSA",
-      "id": "Q02",
-      "group": "direct",
-      "gold": [
-        "health_testing"
-      ],
-      "retrieved": [
-        "health_testing",
-        "health_dataset",
-        "health_overview"
-      ]
-    },
-    {
-      "method": "LSA",
-      "id": "Q03",
-      "group": "direct",
-      "gold": [
-        "health_dataset"
-      ],
-      "retrieved": [
-        "health_dataset",
-        "health_symptoms",
-        "stock_baseline"
-      ]
-    },
-    {
-      "method": "LSA",
-      "id": "Q04",
-      "group": "direct",
-      "gold": [
-        "stock_dataset"
-      ],
-      "retrieved": [
-        "stock_dataset",
-        "stock_return",
-        "health_dataset"
-      ]
-    },
-    {
-      "method": "LSA",
-      "id": "Q05",
-      "group": "direct",
-      "gold": [
-        "apple_ir"
-      ],
-      "retrieved": [
-        "apple_ir",
-        "stock_limits",
-        "stock_baseline"
-      ]
-    },
-    {
-      "method": "LSA",
-      "id": "Q06",
-      "group": "paraphrase",
-      "gold": [
-        "health_testing"
-      ],
-      "retrieved": [
-        "health_testing",
-        "stock_limits",
-        "health_overview"
-      ]
-    },
-    {
-      "method": "LSA",
-      "id": "Q07",
-      "group": "paraphrase",
-      "gold": [
-        "stock_baseline"
-      ],
-      "retrieved": [
-        "stock_baseline",
-        "stock_ohlcv",
-        "stock_limits"
-      ]
-    },
-    {
-      "method": "LSA",
-      "id": "Q08",
-      "group": "paraphrase",
-      "gold": [
-        "stock_ohlcv"
-      ],
-      "retrieved": [
-        "stock_baseline",
-        "stock_ohlcv",
-        "stock_limits"
-      ]
-    },
-    {
-      "method": "LSA",
-      "id": "Q09",
-      "group": "multi_hop",
-      "gold": [
-        "health_prevention",
-        "health_overview"
-      ],
-      "retrieved": [
-        "health_prevention",
-        "health_symptoms",
-        "apple_ir"
-      ]
-    },
-    {
-      "method": "LSA",
-      "id": "Q10",
-      "group": "multi_hop",
-      "gold": [
-        "stock_dataset",
-        "stock_ohlcv",
-        "stock_return",
-        "apple_ir"
-      ],
-      "retrieved": [
-        "stock_ohlcv",
-        "apple_ir",
-        "stock_return"
-      ]
-    },
-    {
-      "method": "LSA",
-      "id": "Q11",
-      "group": "multi_hop",
-      "gold": [
-        "health_model",
-        "health_dataset"
-      ],
-      "retrieved": [
-        "health_model",
-        "health_testing",
-        "health_prevention"
-      ]
-    },
-    {
-      "method": "LSA",
-      "id": "Q12",
-      "group": "multi_hop",
-      "gold": [
-        "stock_baseline",
-        "stock_limits"
-      ],
-      "retrieved": [
-        "stock_baseline",
-        "stock_limits",
-        "stock_ohlcv"
-      ]
-    },
-    {
-      "method": "LSA",
-      "id": "Q13",
-      "group": "out_of_scope",
-      "gold": [],
-      "retrieved": [
-        "health_symptoms",
-        "stock_baseline",
-        "stock_ohlcv"
-      ]
-    },
-    {
-      "method": "LSA",
-      "id": "Q14",
-      "group": "out_of_scope",
-      "gold": [],
-      "retrieved": [
-        "health_model",
-        "stock_baseline",
-        "health_prevention"
-      ]
-    },
-    {
-      "method": "LSA",
-      "id": "Q15",
-      "group": "out_of_scope",
-      "gold": [],
-      "retrieved": [
-        "apple_ir",
-        "stock_baseline",
-        "stock_limits"
-      ]
-    },
-    {
-      "method": "KG",
-      "id": "Q01",
-      "group": "direct",
-      "gold": [
-        "health_symptoms"
-      ],
-      "retrieved": [
-        "health_overview",
-        "health_symptoms",
-        "health_testing"
-      ]
-    },
-    {
-      "method": "KG",
-      "id": "Q02",
-      "group": "direct",
-      "gold": [
-        "health_testing"
-      ],
-      "retrieved": [
-        "health_overview",
-        "health_symptoms",
-        "health_testing"
-      ]
-    },
-    {
-      "method": "KG",
-      "id": "Q03",
-      "group": "direct",
-      "gold": [
-        "health_dataset"
-      ],
-      "retrieved": [
-        "health_dataset",
-        "health_model"
-      ]
-    },
-    {
-      "method": "KG",
-      "id": "Q04",
-      "group": "direct",
-      "gold": [
-        "stock_dataset"
-      ],
-      "retrieved": [
-        "stock_baseline",
-        "apple_ir",
-        "stock_dataset"
-      ]
-    },
-    {
-      "method": "KG",
-      "id": "Q05",
-      "group": "direct",
-      "gold": [
-        "apple_ir"
-      ],
-      "retrieved": [
-        "apple_ir",
-        "stock_baseline",
-        "stock_dataset"
-      ]
-    },
-    {
-      "method": "KG",
-      "id": "Q06",
-      "group": "paraphrase",
-      "gold": [
-        "health_testing"
-      ],
-      "retrieved": []
-    },
-    {
-      "method": "KG",
-      "id": "Q07",
-      "group": "paraphrase",
-      "gold": [
-        "stock_baseline"
-      ],
-      "retrieved": []
-    },
-    {
-      "method": "KG",
-      "id": "Q08",
-      "group": "paraphrase",
-      "gold": [
-        "stock_ohlcv"
-      ],
-      "retrieved": []
-    },
-    {
-      "method": "KG",
-      "id": "Q09",
-      "group": "multi_hop",
-      "gold": [
-        "health_prevention",
-        "health_overview"
-      ],
-      "retrieved": [
-        "health_prevention",
-        "health_overview",
-        "health_symptoms"
-      ]
-    },
-    {
-      "method": "KG",
-      "id": "Q10",
-      "group": "multi_hop",
-      "gold": [
-        "stock_dataset",
-        "stock_ohlcv",
-        "stock_return",
-        "apple_ir"
-      ],
-      "retrieved": [
-        "apple_ir",
-        "stock_baseline",
-        "stock_ohlcv"
-      ]
-    },
-    {
-      "method": "KG",
-      "id": "Q11",
-      "group": "multi_hop",
-      "gold": [
-        "health_model",
-        "health_dataset"
-      ],
-      "retrieved": [
-        "health_model",
-        "health_dataset"
-      ]
-    },
-    {
-      "method": "KG",
-      "id": "Q12",
-      "group": "multi_hop",
-      "gold": [
-        "stock_baseline",
-        "stock_limits"
-      ],
-      "retrieved": [
-        "stock_baseline",
-        "stock_limits",
-        "stock_return"
-      ]
-    },
-    {
-      "method": "KG",
-      "id": "Q13",
-      "group": "out_of_scope",
-      "gold": [],
-      "retrieved": [
-        "stock_baseline",
-        "apple_ir",
-        "stock_dataset"
-      ]
-    },
-    {
-      "method": "KG",
-      "id": "Q14",
-      "group": "out_of_scope",
-      "gold": [],
-      "retrieved": []
-    },
-    {
-      "method": "KG",
-      "id": "Q15",
-      "group": "out_of_scope",
-      "gold": [],
-      "retrieved": []
-    },
-    {
-      "method": "Hybrid",
-      "id": "Q01",
-      "group": "direct",
-      "gold": [
-        "health_symptoms"
-      ],
-      "retrieved": [
-        "health_symptoms",
-        "health_overview",
-        "health_testing"
-      ]
-    },
-    {
-      "method": "Hybrid",
-      "id": "Q02",
-      "group": "direct",
-      "gold": [
-        "health_testing"
-      ],
-      "retrieved": [
-        "health_testing",
-        "health_dataset",
-        "health_overview"
-      ]
-    },
-    {
-      "method": "Hybrid",
-      "id": "Q03",
-      "group": "direct",
-      "gold": [
-        "health_dataset"
-      ],
-      "retrieved": [
-        "health_dataset",
-        "health_symptoms",
-        "stock_dataset"
-      ]
-    },
-    {
-      "method": "Hybrid",
-      "id": "Q04",
-      "group": "direct",
-      "gold": [
-        "stock_dataset"
-      ],
-      "retrieved": [
-        "stock_dataset",
-        "stock_return",
-        "health_symptoms"
-      ]
-    },
-    {
-      "method": "Hybrid",
-      "id": "Q05",
-      "group": "direct",
-      "gold": [
-        "apple_ir"
-      ],
-      "retrieved": [
-        "apple_ir",
-        "stock_limits",
-        "stock_baseline"
-      ]
-    },
-    {
-      "method": "Hybrid",
-      "id": "Q06",
-      "group": "paraphrase",
-      "gold": [
-        "health_testing"
-      ],
-      "retrieved": [
-        "health_testing",
-        "health_overview",
-        "stock_limits"
-      ]
-    },
-    {
-      "method": "Hybrid",
-      "id": "Q07",
-      "group": "paraphrase",
-      "gold": [
-        "stock_baseline"
-      ],
-      "retrieved": [
-        "stock_baseline",
-        "stock_ohlcv",
-        "health_symptoms"
-      ]
-    },
-    {
-      "method": "Hybrid",
-      "id": "Q08",
-      "group": "paraphrase",
-      "gold": [
-        "stock_ohlcv"
-      ],
-      "retrieved": [
-        "stock_baseline",
-        "stock_ohlcv",
-        "stock_dataset"
-      ]
-    },
-    {
-      "method": "Hybrid",
-      "id": "Q09",
-      "group": "multi_hop",
-      "gold": [
-        "health_prevention",
-        "health_overview"
-      ],
-      "retrieved": [
-        "health_prevention",
-        "health_symptoms",
-        "health_overview"
-      ]
-    },
-    {
-      "method": "Hybrid",
-      "id": "Q10",
-      "group": "multi_hop",
-      "gold": [
-        "stock_dataset",
-        "stock_ohlcv",
-        "stock_return",
-        "apple_ir"
-      ],
-      "retrieved": [
-        "apple_ir",
-        "stock_dataset",
-        "stock_return"
-      ]
-    },
-    {
-      "method": "Hybrid",
-      "id": "Q11",
-      "group": "multi_hop",
-      "gold": [
-        "health_model",
-        "health_dataset"
-      ],
-      "retrieved": [
-        "health_model",
-        "health_prevention",
-        "health_testing"
-      ]
-    },
-    {
-      "method": "Hybrid",
-      "id": "Q12",
-      "group": "multi_hop",
-      "gold": [
-        "stock_baseline",
-        "stock_limits"
-      ],
-      "retrieved": [
-        "stock_limits",
-        "stock_baseline",
-        "health_symptoms"
-      ]
-    },
-    {
-      "method": "Hybrid",
-      "id": "Q13",
-      "group": "out_of_scope",
-      "gold": [],
-      "retrieved": [
-        "stock_baseline",
-        "health_symptoms",
-        "stock_limits"
-      ]
-    },
-    {
-      "method": "Hybrid",
-      "id": "Q14",
-      "group": "out_of_scope",
-      "gold": [],
-      "retrieved": [
-        "health_model",
-        "health_prevention",
-        "stock_baseline"
-      ]
-    },
-    {
-      "method": "Hybrid",
-      "id": "Q15",
-      "group": "out_of_scope",
-      "gold": [],
-      "retrieved": [
-        "apple_ir",
-        "stock_baseline",
-        "health_model"
-      ]
-    },
-    {
-      "method": "GraphRAG",
-      "id": "Q01",
-      "group": "direct",
-      "gold": [
-        "health_symptoms"
-      ],
-      "retrieved": [
-        "health_symptoms",
-        "health_overview",
-        "health_testing"
-      ]
-    },
-    {
-      "method": "GraphRAG",
-      "id": "Q02",
-      "group": "direct",
-      "gold": [
-        "health_testing"
-      ],
-      "retrieved": [
-        "health_testing",
-        "health_overview",
-        "health_symptoms"
-      ]
-    },
-    {
-      "method": "GraphRAG",
-      "id": "Q03",
-      "group": "direct",
-      "gold": [
-        "health_dataset"
-      ],
-      "retrieved": [
-        "health_dataset",
-        "health_model",
-        "health_symptoms"
-      ]
-    },
-    {
-      "method": "GraphRAG",
-      "id": "Q04",
-      "group": "direct",
-      "gold": [
-        "stock_dataset"
-      ],
-      "retrieved": [
-        "stock_dataset",
-        "stock_return",
-        "stock_baseline"
-      ]
-    },
-    {
-      "method": "GraphRAG",
-      "id": "Q05",
-      "group": "direct",
-      "gold": [
-        "apple_ir"
-      ],
-      "retrieved": [
-        "apple_ir",
-        "stock_baseline",
-        "stock_dataset"
-      ]
-    },
-    {
-      "method": "GraphRAG",
-      "id": "Q06",
-      "group": "paraphrase",
-      "gold": [
-        "health_testing"
-      ],
-      "retrieved": [
-        "health_testing",
-        "health_overview",
-        "stock_limits"
-      ]
-    },
-    {
-      "method": "GraphRAG",
-      "id": "Q07",
-      "group": "paraphrase",
-      "gold": [
-        "stock_baseline"
-      ],
-      "retrieved": [
-        "stock_baseline",
-        "stock_ohlcv",
-        "health_symptoms"
-      ]
-    },
-    {
-      "method": "GraphRAG",
-      "id": "Q08",
-      "group": "paraphrase",
-      "gold": [
-        "stock_ohlcv"
-      ],
-      "retrieved": [
-        "stock_baseline",
-        "stock_ohlcv",
-        "stock_dataset"
-      ]
-    },
-    {
-      "method": "GraphRAG",
-      "id": "Q09",
-      "group": "multi_hop",
-      "gold": [
-        "health_prevention",
-        "health_overview"
-      ],
-      "retrieved": [
-        "health_prevention",
-        "health_overview",
-        "health_symptoms"
-      ]
-    },
-    {
-      "method": "GraphRAG",
-      "id": "Q10",
-      "group": "multi_hop",
-      "gold": [
-        "stock_dataset",
-        "stock_ohlcv",
-        "stock_return",
-        "apple_ir"
-      ],
-      "retrieved": [
-        "apple_ir",
-        "stock_baseline",
-        "stock_dataset"
-      ]
-    },
-    {
-      "method": "GraphRAG",
-      "id": "Q11",
-      "group": "multi_hop",
-      "gold": [
-        "health_model",
-        "health_dataset"
-      ],
-      "retrieved": [
-        "health_model",
-        "health_prevention",
-        "health_testing"
-      ]
-    },
-    {
-      "method": "GraphRAG",
-      "id": "Q12",
-      "group": "multi_hop",
-      "gold": [
-        "stock_baseline",
-        "stock_limits"
-      ],
-      "retrieved": [
-        "stock_baseline",
-        "stock_limits",
-        "stock_dataset"
-      ]
-    },
-    {
-      "method": "GraphRAG",
-      "id": "Q13",
-      "group": "out_of_scope",
-      "gold": [],
-      "retrieved": [
-        "stock_baseline",
-        "stock_dataset",
-        "apple_ir"
-      ]
-    },
-    {
-      "method": "GraphRAG",
-      "id": "Q14",
-      "group": "out_of_scope",
-      "gold": [],
-      "retrieved": [
-        "health_model",
-        "health_prevention",
-        "stock_baseline"
-      ]
-    },
-    {
-      "method": "GraphRAG",
-      "id": "Q15",
-      "group": "out_of_scope",
-      "gold": [],
-      "retrieved": [
-        "apple_ir",
-        "stock_baseline",
-        "health_model"
-      ]
-    }
-  ]
+  "error_count": 13,
+  "prediction_rows": 75
 }

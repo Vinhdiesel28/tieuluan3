@@ -20,10 +20,10 @@ Repository là quyển tiểu luận hoàn chỉnh từ lịch sử AI, ML, CNN,
 | 2 | ML cơ bản, scratch/Keras/PyTorch | CDC Diabetes, giá nhà Việt Nam | `02_ML_experiments.ipynb` |
 | 3 | CNN, scratch/Keras/PyTorch | MNIST, EuroSAT | `03_CNN_experiments.ipynb` |
 | 4 | RNN, LSTM và so sánh kiến trúc | AAPL, Online Retail II | `04_RNN_experiments.ipynb`, `06_architecture_comparison.ipynb` |
-| 5 | Knowledge Graph và RAG | 12 tài liệu, 23 triples, 15 câu benchmark | `07_knowledge_graph_rag.ipynb` |
+| 5 | Knowledge Base, Knowledge Graph và RAG | Diabetes, AAPL, 12 tài liệu, 23 triples, 15 câu benchmark | `07_knowledge_graph_rag.ipynb` |
 | 6 | Hệ đa Agent | Kết quả sáu bài toán và kho tri thức | `08_multi_agent_system.ipynb` |
 
-Notebook `05_comparison_deploy.ipynb` tổng hợp mô hình và triển khai. Các notebook 07–08 giải thích từng phần code theo thứ tự: mục tiêu, dữ liệu, hàm xử lý, output và nhận xét.
+Notebook `05_comparison_deploy.ipynb` tổng hợp mô hình và triển khai. Notebook 07 có 20 code cell đã chạy, bao phủ validation, ingestion/chunking, provenance, B0–B4, grounded answer, request contract, metric, ablation, phân tích lỗi và API. Notebook 08 giải thích hệ đa Agent.
 
 ## Dataset
 
@@ -36,13 +36,13 @@ Các bộ lớn MNIST, EuroSAT, Online Retail II và giá nhà không được n
 
 ## Kết quả Chương 5–6
 
-| Method | Recall@3 | MRR@3 | Complete@3 | OOD empty |
-|---|---:|---:|---:|---:|
-| BM25 | 0,9167 | 0,9583 | 0,8333 | 0,0000 |
-| LSA | 0,8958 | 0,9583 | 0,7500 | 0,0000 |
-| KG | 0,7083 | 0,5972 | 0,6667 | 0,6667 |
-| Hybrid | **0,9375** | 0,9583 | 0,8333 | 0,0000 |
-| GraphRAG | 0,9167 | 0,9583 | 0,8333 | 0,0000 |
+| System | Method | Precision@3 | Recall@3 | MRR@3 | nDCG@3 | OOD abstain |
+|---|---|---:|---:|---:|---:|---:|
+| B0 | BM25 | 0,4167 | 0,9167 | **0,9583** | **0,9175** | 1,0000 |
+| B1 | LSA | 0,3889 | 0,8750 | 0,9167 | 0,8493 | 1,0000 |
+| B2 | Hybrid | 0,4167 | 0,9167 | **0,9583** | 0,9056 | 1,0000 |
+| B3 | KG | 0,3611 | 0,7083 | 0,5972 | 0,6112 | 1,0000 |
+| B4 | GraphRAG | **0,4444** | **0,9375** | 0,9167 | 0,9063 | 1,0000 |
 
 Hệ thống có 7 Agent và 6 kịch bản: 3 `supported`, 3 `needs_human`. Đây là trạng thái policy, không phải độ chính xác mô hình.
 
@@ -71,6 +71,15 @@ Content-Type: application/json
 {"question":"AAPL được dự báo bằng dữ liệu nào và có nên mua không?"}
 ```
 
+API RAG độc lập hỗ trợ năm cấu hình B0–B4:
+
+```http
+POST /api/rag
+Content-Type: application/json
+
+{"question":"AAPL gồm dữ liệu nào?","method":"B4","top_k":3,"hops":2,"domain":"finance"}
+```
+
 Tạo lại phần mới và báo cáo:
 
 ```bash
@@ -80,4 +89,4 @@ python tools/execute_agent_notebooks.py
 python tools/build_report.py
 ```
 
-Các số liệu trong báo cáo được đọc từ file kết quả. GraphRAG không được tuyên bố tốt nhất vì benchmark hiện tại cho thấy Hybrid có Recall@3 cao hơn. Kết quả sức khỏe và tài chính chỉ phục vụ học tập, không thay thế chẩn đoán hoặc khuyến nghị đầu tư.
+Các số liệu trong báo cáo được đọc từ file kết quả. B4 có Recall@3 cao nhất nhưng B0/B2 có MRR cao hơn, vì vậy không tuyên bố một hệ thống thắng mọi tiêu chí. Kết quả sức khỏe và tài chính chỉ phục vụ học tập, không thay thế chẩn đoán hoặc khuyến nghị đầu tư.
